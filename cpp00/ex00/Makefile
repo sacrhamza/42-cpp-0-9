@@ -1,4 +1,7 @@
+#!/usr/bin/make -f
 CPP = c++
+RM = rm
+RM_OPTION = -f
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -7,9 +10,7 @@ TARGET = megaphone
 $(TARGET):
 	$(CPP) $(FLAGS) megaphone.cpp -o $(TARGET) 
 
-clean:
+fclean:
 	$(RM) $(RM_OPTION) $(TARGET)
-
-fclean: clean
 
 re: fclean $(TARGET)
