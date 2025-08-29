@@ -1,7 +1,9 @@
 #include <iostream>
 
-void print_arg(std::string str)
+void print_arg(char *arg)
 {
+  std::string str(arg);
+
   for (size_t index = 0; index < str.size(); index++)
   {
     std::cout << char(std::toupper(str.at(index)));
@@ -19,9 +21,7 @@ void print_args(char **args, int max)
 int main(int argc, char *argv[])
 {
   if (argc > 1)
-  {
     print_args(argv + 1, argc - 1);
-  }
   else 
     std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
   return (0);
