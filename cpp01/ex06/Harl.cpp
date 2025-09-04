@@ -1,0 +1,81 @@
+#include "Harl.hpp"
+#include <iostream>
+#include <new>
+#include <ostream>
+
+void Harl::debug(void)
+{
+  std::cout << "I love having extra bacon for my \
+7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!\n";
+}
+
+void Harl::info(void)
+{
+  std::cout << "I cannot believe adding extra bacon costs more money.\
+You didn’t put enough bacon in my burger! If you did,\
+I wouldn’t be asking for more!\n";
+}
+
+void Harl::warning(void)
+{
+  std::cout << "I think I deserve to have some extra \
+bacon for free. I’ve been coming for years whereas you \
+started working here since last month.\n";
+}
+
+void Harl::error(void)
+{
+  std::cout << "This is unacceptable! I want to speak \
+to the manager now.\n";
+}
+
+void Harl::complain(std::string level)
+{
+  typedef void (Harl::*handler_func)(void);
+
+  struct s_handler{
+    handler_func handler;
+    std::string str;
+  };
+
+  struct s_handler all[4] = {
+    {&Harl::debug, "debug"},
+    {&Harl::info, "info"},
+    {&Harl::warning, "warning"},
+    {&Harl::error, "error"}
+  };
+
+  for (int index = 0; index < 4; index++)
+  {
+    if (all[index].str == level)
+    {
+      (this->*all[index].handler)();
+    }
+  }
+}
+
+void Harl::filter(std::string arg_)
+{
+  std::string choices[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+  int choice_index = 0;
+  for (; choice_index < 4; choice_index++)
+    if (choices[choice_index] == arg_)
+      break;
+  switch (choice_index)
+  {
+    case 0:
+      std::cout << "[ " << choices[0] << " ]" << "\n";
+      debug();
+    case 1:
+      std::cout << "[ " << choices[1] << " ]" << "\n";
+      info();
+    case 2:
+      std::cout << "[ " << choices[2] << " ]" << "\n";
+      warning();
+    case 3:
+      std::cout << "[ " << choices[3] << " ]" << "\n";
+      error();
+    default:
+      std::cout << "[ Probably complaining about insignificant problems ]\n";
+  }
+}
