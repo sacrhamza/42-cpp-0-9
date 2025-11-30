@@ -1,7 +1,7 @@
-#ifndef PHONE_BOOK_HPP
-# define PHONE_BOOK_HPP
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-
+#include "Contact.hpp"
 
 class PhoneBook
 {
@@ -9,12 +9,10 @@ class PhoneBook
     Contact m_contacts[8];
     int m_currentIndex;
     bool m_full;
-    void save_contact(Contact& new_contact);
   public:
-    static void get_data(std::string& r_field, std::string message);
+    static std::string get_data(std::string message);
     void add_contact(void);
     void search_contacts();
-    void print(void);
     PhoneBook(void);
 };
 #endif

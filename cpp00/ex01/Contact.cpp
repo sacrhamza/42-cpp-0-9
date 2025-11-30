@@ -20,6 +20,12 @@ void Contact::set_darkest_secret(std::string darkestSecret)
   m_darkestSecret = darkestSecret;
 }
 
+
+void Contact::set_nickname(std::string nickName)
+{
+  m_nickName = nickName;
+}
+
 std::string Contact::get_first_name(void)
 {
   return (m_firstName);
@@ -40,3 +46,8 @@ std::string Contact::get_darkest_secret(void)
   return (m_darkestSecret);
 }
 
+
+std::string Contact::get_nickname(void)
+{
+  return (m_nickName);
+}

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -9,7 +10,7 @@ int main(void)
   
   while (true)
   {
-    PhoneBook::get_data(choice, "COMMAND (ADD | SEARCH | EXIT): ");
+    choice = PhoneBook::get_data("COMMAND (ADD | SEARCH | EXIT): ");
     if (choice == "ADD")
       phonebook.add_contact();
     else if (choice == "SEARCH")
@@ -17,6 +18,5 @@ int main(void)
     else if (choice == "EXIT")
       break ;
   }
-
   return (0);
 }
