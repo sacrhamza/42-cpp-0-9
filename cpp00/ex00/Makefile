@@ -7,7 +7,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 TARGET = megaphone
 
-$(TARGET):
+$(TARGET): megaphone.cpp
 	$(CPP) $(FLAGS) megaphone.cpp -o $(TARGET) 
 
 fclean:
