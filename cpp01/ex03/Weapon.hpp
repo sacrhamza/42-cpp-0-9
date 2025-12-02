@@ -9,9 +9,9 @@ class Weapon
     std::string m_type;
 
   public:
-    std::string& getType(void);
-    void setType(std::string new_type_);
-    Weapon(std::string type_);
+    const std::string &getType(void);
+    void setType(std::string new_type);
+    Weapon(std::string type);
 };
 
 #endif

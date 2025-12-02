@@ -4,11 +4,11 @@
 #include "Weapon.hpp"
 class HumanA
 {
-  public:
+  private:
     Weapon &m_weapon;
     std::string m_name;
-
-    HumanA(std::string name_, Weapon &weapon_);
+  public:
+    HumanA(const std::string& name, Weapon &weapon);
     void attack(void);
 };
 #endif

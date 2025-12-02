@@ -22,10 +22,10 @@ Jim attacks with their some other type of club"
   clean
 }
 
-make re
+make
 if [[ $? -eq 0 ]]
 then
-  output="$(make run)" && test "$output"
+  output="$(./Weapon)" && test "$output"
 else
   printf "makefile error\n" 1>&2
 fi

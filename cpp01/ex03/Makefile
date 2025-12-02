@@ -1,25 +1,30 @@
-#!/usr/bin/make -f
-
 CPP = c++
-
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm
 
 RM_OPTION = -f
 
-FILES = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
+FILES = ./main.cpp ./HumanA.cpp ./HumanB.cpp ./Weapon.cpp
 
+
+OBJECTS = $(FILES:%.cpp=%.o)
+
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 TARGET = Weapon
 
-$(TARGET): $(FILES)
-	@$(CPP) $(CPP_FLAGS) $^ -o $@
+all: $(TARGET)
 
-fclean:
-	@$(RM) $(RM_OPTION) $(TARGET)
+$(TARGET): $(OBJECTS)
+	$(CPP) $^ -o $(TARGET) 
+
+%.o: %.cpp
+	$(CPP) -c $< -o $@
+
+clean:
+	$(RM) $(RM_OPTION) $(OBJECTS)
+
+fclean: clean
+	$(RM) $(RM_OPTION) $(TARGET)
 
 re: fclean $(TARGET)
-
-run:
-	@./$(TARGET)
