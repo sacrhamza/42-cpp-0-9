@@ -1,21 +1,18 @@
 #include "Zombie.hpp"
-#include <algorithm>
 
 int main(void)
 {
-  // test announce
-  Zombie first_zombie("soldier");
-  first_zombie.announce();
+  int N = 5;
+  std::string name = "something";
 
-  std::cout << "\n===========\n\n";
+  Zombie *zombies = zombieHorde(N, name);
 
-  // test newZombie
-  Zombie *zombie_ptr = newZombie("Fighter");
-  zombie_ptr->announce();
-  delete zombie_ptr;
+  if (zombies == NULL)
+    return (1);
 
-  std::cout << "\n===========\n\n";
+  for (int i = 0; i < N; ++i)
+    zombies[i].announce();
 
-  randomChump("horseman");
+  delete[] zombies;
   return (0);
 }
