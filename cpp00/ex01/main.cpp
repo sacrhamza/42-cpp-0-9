@@ -10,7 +10,7 @@ int main(void)
   
   while (true)
   {
-    choice = PhoneBook::get_data("COMMAND (ADD | SEARCH | EXIT)b: ");
+    choice = PhoneBook::get_data("COMMAND (ADD | SEARCH | EXIT): ");
     if (choice == "ADD")
       phonebook.add_contact();
     else if (choice == "SEARCH")

@@ -26,28 +26,28 @@ void Contact::set_nickname(std::string nickName)
   m_nickName = nickName;
 }
 
-std::string Contact::get_first_name(void)
+const std::string Contact::get_first_name(void)
 {
   return (m_firstName);
 }
 
-std::string Contact::get_last_name(void)
+const std::string Contact::get_last_name(void)
 {
   return (m_firstName);
 }
 
-std::string Contact::get_phone_number(void)
+const std::string Contact::get_phone_number(void)
 {
   return (m_phonNUmber);
 }
 
-std::string Contact::get_darkest_secret(void)
+const std::string Contact::get_darkest_secret(void)
 {
   return (m_darkestSecret);
 }
 
 
-std::string Contact::get_nickname(void)
+const std::string Contact::get_nickname(void)
 {
   return (m_nickName);
 }

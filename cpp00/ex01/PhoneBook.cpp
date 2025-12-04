@@ -33,9 +33,8 @@ std::string PhoneBook::get_data(std::string message)
   int i = 0;
   do {
     i++;
-    std::cout << message << "\n";
+    std::cout << message;
     std::getline(std::cin >> std::ws, input);
-    std::cout << "hey" << i;
   }while (input.empty() && !std::cin.eof());
   if (std::cin.eof())
   {
