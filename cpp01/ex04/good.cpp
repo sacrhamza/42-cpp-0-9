@@ -20,7 +20,7 @@ class Str
       while ((position = str.find(_from, position)) != std::string::npos)
       {
         str.erase(position, _len).insert(position, _to);
-        position += _to.length();
+        // position += _to.length();
         // position = str.find(_from, position);
       }
       return (str);

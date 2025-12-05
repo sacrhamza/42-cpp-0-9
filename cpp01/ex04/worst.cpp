@@ -17,10 +17,10 @@ class Str
       size_t position;
 
       position = 0;
-      while ((position = str.find(_from, position)) != std::string::npos)
+      while ((position = str.find(_from)) != std::string::npos)
       {
         str.erase(position, _len).insert(position, _to);
-        position += _to.length();
+        // position += _to.length();
         // position = str.find(_from, position);
       }
       return (str);
