@@ -11,15 +11,15 @@ class ClapTrap
     unsigned int m_energy_points;
     unsigned int m_attack_damage;
     ClapTrap(void);
-  public:
 
+  public:
     ClapTrap(std::string name);
     ClapTrap(const ClapTrap& other);
     ClapTrap& operator=(const ClapTrap& other);
     void attack(const std::string &target);
     void beRepaired(unsigned int amount);
     void takeDamage(unsigned int amount);
-
+    
     // destructor
     ~ClapTrap(void);
 };

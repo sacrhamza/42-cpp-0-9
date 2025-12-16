@@ -10,7 +10,7 @@ OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = Fixed
+TARGET = ClapTrap
 
 all: $(TARGET)
 
