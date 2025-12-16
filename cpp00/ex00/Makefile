@@ -1,16 +1,23 @@
-#!/usr/bin/make -f
 CPP = c++
-RM = rm
-RM_OPTION = -f
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = megaphone
+TARGET = megaphone 
 
-$(TARGET): megaphone.cpp
-	$(CPP) $(FLAGS) megaphone.cpp -o $(TARGET) 
+FILES = ./megaphone.cpp
 
-fclean:
+OBJECTS = $(FILES:%.cpp=%.o)
+
+$(TARGET): $(OBJECTS)
+	$(CPP) $(CPP_FLAGS) $^ -o $@
+
+%.o: %.cpp
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(RM_OPTION) $(OBJECTS)
+
+fclean: clean
 	$(RM) $(RM_OPTION) $(TARGET)
 
 re: fclean $(TARGET)

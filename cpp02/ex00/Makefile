@@ -1,24 +1,18 @@
 CPP = c++
 
-RM = rm
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-RM_OPTION = -f
+TARGET = Fixed 
 
-FILES = Fixed.cpp main.cpp
+FILES = ./main.cpp ./Fixed.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
-
-TARGET = Fixed
-
-all: $(TARGET)
-
 $(TARGET): $(OBJECTS)
-	$(CPP) $^ -o $(TARGET) 
+	$(CPP) $(CPP_FLAGS) $^ -o $@
 
 %.o: %.cpp
-	$(CPP) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)

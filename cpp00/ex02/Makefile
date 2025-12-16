@@ -2,13 +2,26 @@ CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = a.out
+TARGET = Account
 
-SOURCE_FILES = Account.cpp tests.cpp
+FILES = ./tests.cpp ./Account.cpp 
 
-$(TARGET): $(SOURCE_FILES)
+OBJECTS = $(FILES:%.cpp=%.o)
+
+$(TARGET): $(OBJECTS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@
 
+%.o: %.cpp
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(RM_OPTION) $(OBJECTS)
+
+fclean: clean
+	$(RM) $(RM_OPTION) $(TARGET)
+
+re: fclean $(TARGET)
+
 test: $(TARGET)
-	@./a.out > file.log
+	@./$(TARGET) > file.log
 	@bash test.sh

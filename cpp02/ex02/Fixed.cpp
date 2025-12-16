@@ -109,13 +109,15 @@ Fixed Fixed::operator++(int)
 Fixed Fixed::operator*(const Fixed& other) const
 {
   Fixed tmp;
-  tmp.setRawBits((m_num * other.m_num) / 256);
+  tmp.setRawBits((m_num * other.m_num) / (1 << fractional_bit));
   return (tmp);
 }
 
 Fixed Fixed::operator/(const Fixed& other) const
 {
-  Fixed tmp(float(m_num) / other.m_num);
+  Fixed tmp;
+  std::cout << "m_num = " << m_num << " other.m_num = " << other.m_num << "\n";
+  tmp.setRawBits(m_num * (1 << fractional_bit) / other.m_num);
   return (tmp);
 }
 

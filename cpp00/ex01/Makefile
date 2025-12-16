@@ -4,12 +4,21 @@ CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 TARGET = PhoneBooK 
 
-SOURCE_FILES = ./main.cpp ./PhoneBook.cpp ./Contact.cpp
+FILES = ./main.cpp ./PhoneBook.cpp ./Contact.cpp
 
-$(TARGET): $(SOURCE_FILES)
+
+OBJECTS = $(FILES:%.cpp=%.o)
+
+$(TARGET): $(OBJECTS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@
 
-fclean:
+%.o: %.cpp
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(RM_OPTION) $(OBJECTS)
+
+fclean: clean
 	$(RM) $(RM_OPTION) $(TARGET)
 
 re: fclean $(TARGET)
