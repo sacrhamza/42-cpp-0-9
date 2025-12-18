@@ -15,10 +15,10 @@ TARGET = ClapTrap
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CPP) $^ -o $(TARGET) 
+	@$(CPP) $^ -o $(TARGET) 
 
 %.o: %.cpp
-	$(CPP) $(CPP_FLAGS) -c $< -o $@
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)
@@ -29,4 +29,4 @@ fclean: clean
 re: fclean $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET)
+	@./$(TARGET)
