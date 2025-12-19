@@ -3,13 +3,13 @@
 #include <iostream>
 #include "Animal.hpp"
 
-class Cat : Animal
+class Cat : public Animal
 {
-  private:
-    Cat(void);
   public:
+    Cat(void);
     Cat(const Cat& other);
     Cat& operator=(const Cat& other);
+    void makeSound(void) const;
     ~Cat(void);
 };
 
