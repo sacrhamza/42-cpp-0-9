@@ -1,24 +1,17 @@
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-  std::string zeus_name = "zeus";
-  std::string hades_name = "hades";
-  std::string name = "methology";
+  FragTrap Demeter("Demeter");
+  FragTrap Hera("Hera");
+  FragTrap tmp("tmp");
+  FragTrap Ares(tmp);
 
-  ClapTrap Zeus(zeus_name);
-  ClapTrap Hades(hades_name);
-  ClapTrap Empty("empty");
+  Ares = Demeter;
 
-  ClapTrap Aphrodite(Empty);
+  Demeter.attack("Hera");
+  Hera.beRepaired(20);
+  Ares.takeDamage(200);
 
-  Empty = Zeus;
-
-  Zeus.beRepaired(20);
-  Hades.attack(zeus_name);
-  Zeus.takeDamage(20);
-  Hades.beRepaired(5);
-  Zeus.takeDamage(25);
-
-  Zeus.attack(zeus_name);
+  Demeter.highFivesGuys();
 }

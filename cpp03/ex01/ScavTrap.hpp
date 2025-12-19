@@ -3,7 +3,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : private ClapTrap
+class ScavTrap : public ClapTrap
 {
 	private:
 		ScavTrap(void);
@@ -13,6 +13,7 @@ class ScavTrap : private ClapTrap
 		ScavTrap(const std::string &name);
 		~ScavTrap(void);
 		void guardGate(void);
+    void attack(const std::string &target);
 };
 
 #endif

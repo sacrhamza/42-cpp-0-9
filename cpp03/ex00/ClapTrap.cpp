@@ -44,10 +44,10 @@ void ClapTrap::attack(const std::string &target)
   if (m_energy_points > 0 && m_hit_points > 0)
   {
     m_energy_points--;
-    std::cout << m_name << " attacks " << target << ", causing " << m_attack_damage << " points of damage\n";
+    std::cout << "ClapTrap " << m_name << " attacks " << target << ", causing " << m_attack_damage << " points of damage\n";
   }
   else {
-    std::cout << m_name << ": I can't attack, what has no function deserves no pursuit.";
+    std::cout << "ClapTrap "<< m_name << ": I can't attack, what has no function deserves no pursuit.";
   }
 }
 
@@ -57,10 +57,10 @@ void ClapTrap::beRepaired(unsigned int amount)
   {
     m_energy_points--;
     m_hit_points += amount;
-    std::cout << m_name << " repairs itself and regains " << amount << " hit points, total: " << m_hit_points << " hit points\n";
+    std::cout<< "ClapTrap " << m_name << " repairs itself and regains " << amount << " hit points, total: " << m_hit_points << " hit points\n";
   }
   else {
-    std::cout << m_name << ": I can't repair myself, what has no function deserves no pursuit.\n";
+    std::cout<< "ClapTrap " << m_name << ": I can't repair myself, what has no function deserves no pursuit.\n";
   }
 }
 
@@ -70,5 +70,5 @@ void ClapTrap::takeDamage(unsigned int amount)
     m_hit_points = 0;
   else
     m_hit_points -= amount;
-  std::cout << m_name << " have been attacked, and now have " << m_hit_points << " hit points\n";
+  std::cout << "ClapTrap " << m_name << " have been attacked, and now have " << m_hit_points << " hit points\n";
 }
