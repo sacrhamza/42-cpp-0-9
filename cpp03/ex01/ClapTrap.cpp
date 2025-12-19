@@ -5,7 +5,7 @@ ClapTrap::ClapTrap(void)
   std::cout << "ClapTrap Default Constructor: My heart is quiet because it belongs to no one.”\n";
 }
 
-ClapTrap::ClapTrap(std::string name) :
+ClapTrap::ClapTrap(const std::string& name) :
   m_name(name),
   m_hit_points(10),
   m_energy_points(10),
