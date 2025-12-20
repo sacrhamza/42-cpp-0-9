@@ -8,7 +8,7 @@ FILES = ./Dog.cpp ./Animal.cpp ./Cat.cpp ./main.cpp ./WrongCat.cpp ./WrongAnimal
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 TARGET = polymorphism
 
