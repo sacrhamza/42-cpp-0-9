@@ -8,6 +8,8 @@ FILES = ./megaphone.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
+all: $(TARGET)
+
 $(TARGET): $(OBJECTS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@
 

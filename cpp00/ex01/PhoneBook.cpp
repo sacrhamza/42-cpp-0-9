@@ -1,9 +1,6 @@
 #include "PhoneBook.hpp"
-#include <ios>
-#include <iostream>
-#include <iomanip>
+#include <cctype>
 #include <stdlib.h>
-#include <string>
 
 PhoneBook::PhoneBook(void)
 {
@@ -18,11 +15,13 @@ void PhoneBook::add_contact(void)
     m_full = true;
     m_currentIndex = 0; 
   }
+
   m_contacts[m_currentIndex].set_first_name(get_data("enter your first name: "));
   m_contacts[m_currentIndex].set_last_name(get_data("enter your last name: "));
   m_contacts[m_currentIndex].set_nickname(get_data("enter your nick name: "));
   m_contacts[m_currentIndex].set_darkest_secret(get_data("enter your darkest secret: "));
   m_contacts[m_currentIndex].set_phone_number(get_data("enter your phone number: "));
+
   m_currentIndex++;
 }
 
@@ -30,20 +29,18 @@ std::string PhoneBook::get_data(std::string message)
 {
   std::string input;
 
-  int i = 0;
-  do {
-    i++;
-    std::cout << message;
-    std::getline(std::cin >> std::ws, input);
-  }while (input.empty() && !std::cin.eof());
-  if (std::cin.eof())
+  while (!std::cin.fail())
   {
-    std::cout << "\nby!!";
-    exit(1);
-  }
-  return (input);
-}
+    std::cout << message;
+    std::getline(std::cin, input);
+    if (!str_is_printable(input))
+      continue ;
+    if (!input.empty())
+      return (input);
+  };
 
+  return ("");
+}
 
 void PhoneBook::put_aligned_text(std::string str)
 {
@@ -56,18 +53,16 @@ void PhoneBook::put_aligned_text(std::string str)
 
 void PhoneBook::search_contacts()
 {
-  int l_max;
-  std::string first_name;
-  std::string last_name;
-  std::string nickname;
+  int max;
+  int displayIndex;
 
-  l_max = (m_full) ? 8 : m_currentIndex;
+  max = (m_full) ? 8 : m_currentIndex;
   put_aligned_text("index");
   put_aligned_text("first_name");
   put_aligned_text("last_name");
   put_aligned_text("nickname");
 
-  for (int index = 0; index < l_max; index++)
+  for (int index = 0; index < max; index++)
   {	
     std::cout << "\n";
     std::cout << std::setw(10) << index;
@@ -77,12 +72,15 @@ void PhoneBook::search_contacts()
     put_aligned_text(m_contacts[index].get_nickname());
   }
   std::cout << "\n";
-  int displayIndex;
+
   std::cout << "give me the display entry [just a number]: ";
   std::cin >> displayIndex;
+
   if (std::cin.fail())
-    exit (1);
-  if ((displayIndex > 7 || displayIndex < 0) || (displayIndex > m_currentIndex && !m_full))
+    return ;
+
+  std::cin.ignore();
+  if ((displayIndex > 7 || displayIndex < 0) || (displayIndex > m_currentIndex - 1 && !m_full))
     std::cout << "error: index is not in range\n";
   else
   {
@@ -90,4 +88,14 @@ void PhoneBook::search_contacts()
     std::cout << "last_name: " << m_contacts[displayIndex].get_last_name() << "\n";
     std::cout << "nickname: " << m_contacts[displayIndex].get_nickname() << "\n";
   };
+}
+
+bool str_is_printable(std::string& str)
+{
+  for (std::size_t index = 0; index < str.length(); index++)
+  {
+    if (!std::isprint(str.at(index)))
+      return (false);
+  }
+  return (true);
 }

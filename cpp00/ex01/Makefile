@@ -2,12 +2,13 @@ CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = PhoneBooK 
+TARGET = PhoneBook
 
 FILES = ./main.cpp ./PhoneBook.cpp ./Contact.cpp
 
-
 OBJECTS = $(FILES:%.cpp=%.o)
+
+all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@
@@ -23,10 +24,5 @@ fclean: clean
 
 re: fclean $(TARGET)
 
-
-test: $(TARGET)
-	@./a.out > file.log
-	@bash test.sh
-
 run: $(TARGET)
-	./PhoneBooK
+	./$(TARGET)

@@ -1,6 +1,4 @@
 #include <iostream>
-#include <stdio.h>
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
 
 int main(void)
@@ -8,7 +6,7 @@ int main(void)
   PhoneBook phonebook;
   std::string choice;
   
-  while (true)
+  while (!std::cin.fail())
   {
     choice = PhoneBook::get_data("COMMAND (ADD | SEARCH | EXIT): ");
     if (choice == "ADD")
@@ -18,5 +16,6 @@ int main(void)
     else if (choice == "EXIT")
       break ;
   }
+  std::cout << "\nby!!";
   return (0);
 }

@@ -11,12 +11,14 @@ class Contact
     std::string m_phonNUmber;
     std::string m_nickName;
     std::string m_darkestSecret;
+
   public:
     void set_first_name(std::string firstName);
     void set_last_name(std::string lastName);
     void set_nickname(std::string lastName);
     void set_phone_number(std::string phoneNumber);
     void set_darkest_secret(std::string darkestSecret);
+
     const std::string get_first_name(void);
     const std::string get_last_name(void);
     const std::string get_phone_number(void);
