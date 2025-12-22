@@ -8,6 +8,8 @@ FILES = ./tests.cpp ./Account.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
+all: $(TARGET)
+
 $(TARGET): $(OBJECTS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@
 
@@ -21,7 +23,3 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(TARGET)
 
 re: fclean $(TARGET)
-
-test: $(TARGET)
-	@./$(TARGET) > file.log
-	@bash test.sh
