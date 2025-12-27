@@ -10,15 +10,15 @@ RM_OPTION = -f
 
 FILES = main.cpp Harl.cpp
 
-TARGET = harlFilter
+NAME = harlFilter
 
-$(TARGET): $(FILES)
+$(NAME): $(FILES)
 	@$(CPP) $(CPP_FLAGS) $^ -o $@
 
 fclean:
-	@$(RM) $(RM_OPTION) $(TARGET)
+	@$(RM) $(RM_OPTION) $(NAME)
 
-re: fclean $(TARGET)
+re: fclean $(NAME)
 
 run:
-	@./$(TARGET)
+	@./$(NAME)
