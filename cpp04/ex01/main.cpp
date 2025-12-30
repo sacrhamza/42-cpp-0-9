@@ -12,6 +12,7 @@ int main()
   Dog tmp;
   Dog dog = tmp;
 
+
   for (size_t i = 0; i < sizeof(animals) / sizeof(Animal *); i++)
     delete animals[i];
 

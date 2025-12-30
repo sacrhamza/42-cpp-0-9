@@ -4,6 +4,7 @@ RM = rm
 
 RM_OPTION = -f
 
+
 FILES = ./main.cpp ./HumanA.cpp ./HumanB.cpp ./Weapon.cpp
 
 
@@ -19,7 +20,7 @@ $(NAME): $(OBJECTS)
 	$(CPP) $^ -o $(NAME) 
 
 %.o: %.cpp
-	$(CPP) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)
@@ -28,3 +29,6 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(NAME)
 
 re: fclean $(NAME)
+
+run: $(NAME)
+	./$(NAME)

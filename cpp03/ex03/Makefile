@@ -10,12 +10,12 @@ OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = DiamondTrap
+NAME = DiamondTrap
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJECTS)
-	$(CPP) $^ -o $(TARGET) 
+$(NAME): $(OBJECTS)
+	$(CPP) $^ -o $(NAME) 
 
 %.o: %.cpp
 	$(CPP) $(CPP_FLAGS) -c $< -o $@
@@ -24,9 +24,9 @@ clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)
 
 fclean: clean
-	$(RM) $(RM_OPTION) $(TARGET)
+	$(RM) $(RM_OPTION) $(NAME)
 
-re: fclean $(TARGET)
+re: fclean $(NAME)
 
-run: $(TARGET)
-	./$(TARGET)
+run: $(NAME)
+	./$(NAME)

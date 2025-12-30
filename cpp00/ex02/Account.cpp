@@ -85,11 +85,9 @@ bool	Account::makeWithdrawal(int withdrawal)
 
 Account::Account(int initial_deposit)
 {
-  // vars
   _amount = initial_deposit;
   _nbDeposits = 1;
 
-  // class variables
   _nbAccounts++;
   _totalAmount += _amount;
 
@@ -103,7 +101,7 @@ Account::Account(int initial_deposit)
 
 Account::Account()
 {
-  _accountIndex++;
+  _accountIndex = _nbAccounts - 1;
 }
 
 Account::~Account()
@@ -111,7 +109,6 @@ Account::~Account()
   std::cout << "index:" << _accountIndex;
   std::cout << ";amount:" << _amount;
   std::cout << ";closed" << "\n";
-// index:0;amount:47;closed
 }
 
 

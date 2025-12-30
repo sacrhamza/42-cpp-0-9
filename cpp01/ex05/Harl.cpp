@@ -31,10 +31,10 @@ to the manager now.\n";
 
 void Harl::complain(std::string level)
 {
-  typedef void (Harl::*handler_func)(void);
+  typedef void (Harl::*handler_func_t)(void);
 
   struct s_handler{
-    handler_func handler;
+    handler_func_t handler;
     std::string str;
   };
 

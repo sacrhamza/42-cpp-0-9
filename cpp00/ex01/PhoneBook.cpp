@@ -87,6 +87,8 @@ void PhoneBook::search_contacts()
     std::cout << "first_name: " << m_contacts[displayIndex].get_first_name() << "\n";
     std::cout << "last_name: " << m_contacts[displayIndex].get_last_name() << "\n";
     std::cout << "nickname: " << m_contacts[displayIndex].get_nickname() << "\n";
+    std::cout << "phone number: " << m_contacts[displayIndex].get_phone_number() << "\n";
+    std::cout << "darkest secret: " << m_contacts[displayIndex].get_darkest_secret() << "\n";
   };
 }
 

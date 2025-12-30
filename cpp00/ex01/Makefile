@@ -2,15 +2,15 @@ CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = PhoneBook
+NAME = PhoneBook
 
 FILES = ./main.cpp ./PhoneBook.cpp ./Contact.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJECTS)
+$(NAME): $(OBJECTS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@
 
 %.o: %.cpp
@@ -20,9 +20,9 @@ clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)
 
 fclean: clean
-	$(RM) $(RM_OPTION) $(TARGET)
+	$(RM) $(RM_OPTION) $(NAME)
 
-re: fclean $(TARGET)
+re: fclean $(NAME)
 
-run: $(TARGET)
-	./$(TARGET)
+run: $(NAME)
+	./$(NAME)

@@ -4,14 +4,14 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./main.cpp
+FILES = ./main.cpp ./Str.cpp
 
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Weapon
+NAME = Sed
 
 all: $(NAME)
 
@@ -19,7 +19,7 @@ $(NAME): $(OBJECTS)
 	$(CPP) $^ -o $(NAME) 
 
 %.o: %.cpp
-	$(CPP) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)

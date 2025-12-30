@@ -1,5 +1,4 @@
 #include "HumanB.hpp"
-#include "Weapon.hpp"
 
 HumanB::HumanB(std::string name)
 {
@@ -10,8 +9,12 @@ HumanB::HumanB(std::string name)
 void HumanB::attack(void)
 {
   std::cout << m_name << " attacks with their "; 
+
   if (m_weapon != NULL)
     std::cout << m_weapon->getType() << "\n";
+  else
+    std::cout << "(no type)";
+
 }
 
 void HumanB::setWeapon(Weapon& weapon)
