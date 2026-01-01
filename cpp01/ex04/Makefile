@@ -6,7 +6,6 @@ RM_OPTION = -f
 
 FILES = ./main.cpp ./Str.cpp
 
-
 OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98

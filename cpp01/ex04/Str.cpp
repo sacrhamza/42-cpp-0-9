@@ -11,12 +11,13 @@ std::string& Str::replace(std::string &str)
 {
   size_t position;
 
+  if (_from == "")
+    return (str);
   position = 0;
   while ((position = str.find(_from, position)) != std::string::npos)
   {
     str.erase(position, _len).insert(position, _to);
     position += _to.length();
-    // position = str.find(_from, position);
   }
   return (str);
 }

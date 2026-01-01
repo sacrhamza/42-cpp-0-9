@@ -1,29 +1,42 @@
 #include <iostream>
 #include <fstream>
-#include <istream>
 #include "Str.hpp"
+
+void close_in_out(std::ifstream &infile, std::ofstream &outfile)
+{
+  if (infile.is_open())
+    infile.close();
+  if (outfile.is_open())
+    outfile.close();
+}
 
 int main(int argc, char **argv)
 {
   std::string str;
   std::string filename;
-  std::fstream file;
-  std::fstream replaced;
+  std::ifstream infile;
+  std::ofstream outfile;
 
   if (argc == 4)
   {
     Str input(argv[2], argv[3]);
-    file.open(argv[1]);
-    filename = argv[1] + std::string(".replace");
-    std::cout << filename << "\n";
-    // std::string to_replace(argv[2]);
-    if (file.fail())
-      std::cerr << "error opening file " << argv[1] << "\n";
-    while(std::getline(file, str))
+    infile.open(argv[1]);
+
+    if (infile.fail())
+      std::cerr << "error opening file for reading\n";
+    else
     {
-      std::cout << "[" << input.replace(str)  << "]" << str.length() << "\n";
+      filename = argv[1] + std::string(".replace");
+      outfile.open(filename.c_str());
+
+      if (outfile.fail())
+        std::cerr << "error creating file for righting\n";
+      while(std::getline(infile, str))
+      {
+        outfile <<  input.replace(str) << "\n";
+      }
     }
-    file.close();
+    close_in_out(infile, outfile);
   }
   return (0);
 }
