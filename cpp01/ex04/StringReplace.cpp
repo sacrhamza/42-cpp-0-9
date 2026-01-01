@@ -1,13 +1,13 @@
-#include "Str.hpp"
+#include "StringReplace.hpp"
 
-Str::Str(std::string from, std::string to) :
+StringReplace::StringReplace(std::string from, std::string to) :
   _from(from),
   _to(to)
 {
   _len = from.length();
 };
 
-std::string& Str::replace(std::string &str)
+std::string& StringReplace::replace(std::string &str)
 {
   size_t position;
 
@@ -22,19 +22,19 @@ std::string& Str::replace(std::string &str)
   return (str);
 }
 
-void Str::set_from(std::string from){
+void StringReplace::set_from(std::string from){
   _from = from;
 }
 
-void Str::set_to(std::string to){
+void StringReplace::set_to(std::string to){
   _to = to;
 }
 
-const std::string& Str::get_from(void) const
+const std::string& StringReplace::get_from(void) const
 {
   return _from;
 }
-const std::string& Str::get_to(void) const
+const std::string& StringReplace::get_to(void) const
 {
   return _to;
 };

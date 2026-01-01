@@ -4,7 +4,7 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./main.cpp ./Str.cpp
+FILES = ./main.cpp ./StringReplace.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 

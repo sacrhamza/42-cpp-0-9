@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Str.hpp"
+#include "StringReplace.hpp"
 
 void close_in_out(std::ifstream &infile, std::ofstream &outfile)
 {
@@ -10,16 +10,29 @@ void close_in_out(std::ifstream &infile, std::ofstream &outfile)
     outfile.close();
 }
 
-int main(int argc, char **argv)
+void replace_and_put(std::ifstream &infile, std::ofstream &outfile, StringReplace &replacer)
 {
   std::string str;
+
+  while(std::getline(infile, str))
+  {
+    outfile <<  replacer.replace(str);
+
+    if (!infile.eof())
+      outfile << "\n";
+  }
+}
+
+int main(int argc, char **argv)
+{
   std::string filename;
   std::ifstream infile;
   std::ofstream outfile;
 
   if (argc == 4)
   {
-    Str input(argv[2], argv[3]);
+    StringReplace replacer(argv[2], argv[3]);
+
     infile.open(argv[1]);
 
     if (infile.fail())
@@ -31,12 +44,14 @@ int main(int argc, char **argv)
 
       if (outfile.fail())
         std::cerr << "error creating file for righting\n";
-      while(std::getline(infile, str))
-      {
-        outfile <<  input.replace(str) << "\n";
-      }
+
+      replace_and_put(infile, outfile, replacer);
     }
     close_in_out(infile, outfile);
+  }
+  else {
+    std::cerr << "num of arguments is not valid\n";
+    return (1);
   }
   return (0);
 }
