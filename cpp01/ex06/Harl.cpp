@@ -54,12 +54,12 @@ void Harl::complain(std::string level)
   }
 }
 
-void Harl::filter(std::string arg_)
+void Harl::filter(std::string arg)
 {
   std::string choices[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
   int choice_index = 0;
   for (; choice_index < 4; choice_index++)
-    if (choices[choice_index] == arg_)
+    if (choices[choice_index] == arg)
       break;
   switch (choice_index)
   {
