@@ -18,7 +18,7 @@ $(NAME): $(OBJECTS)
 	$(CPP) $^ -o $(NAME) 
 
 %.o: %.cpp
-	$(CPP) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(RM_OPTION) $(OBJECTS)
