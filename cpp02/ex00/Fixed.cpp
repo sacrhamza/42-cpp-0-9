@@ -1,5 +1,7 @@
 #include "./Fixed.hpp"
 
+const int Fixed::fractional_bit = 8;
+
 Fixed::Fixed(void)
 {
   std::cout << "Default constructor called\n";
@@ -25,7 +27,8 @@ Fixed::~Fixed(void)
   std::cout << "Destructor called\n";
 }
 
-int Fixed::getRawBits(void) const{
+int Fixed::getRawBits(void) const
+{
   std::cout << "getRawBits member function called\n";
   return (num);
 }

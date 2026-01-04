@@ -9,7 +9,7 @@ class Fixed
 {
   private:
     int m_num;
-    static int fractional_bit;
+    const static int fractional_bit;
   public:
     static Fixed& min(Fixed &first, Fixed &second);
     static const Fixed& min(const Fixed &first, const Fixed &second);
@@ -26,7 +26,6 @@ class Fixed
     ~Fixed(void);
     int getRawBits(void) const;
     void setRawBits(int const raw);
-    friend std::ostream &operator<<(std::ostream &out, const Fixed &other);
 
     // operators
 
@@ -50,5 +49,7 @@ class Fixed
     Fixed operator--(int);
     Fixed operator++(int);
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &other);
 
 #endif

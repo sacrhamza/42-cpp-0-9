@@ -6,7 +6,8 @@ class Fixed
 {
   private:
     int num;
-    static int fractional_bit;
+    const static int fractional_bit;
+
   public:
     Fixed(void);
     Fixed(const Fixed &other);
@@ -15,5 +16,6 @@ class Fixed
     int getRawBits(void) const;
     void setRawBits(int const raw);
 };
+
 
 #endif

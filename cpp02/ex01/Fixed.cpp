@@ -1,23 +1,6 @@
 #include "./Fixed.hpp"
 
-void print_bit(unsigned char bit)
-{
-  for (int i = 0; i < 8; i++)
-  {
-    std::cout << (bit >> 7);
-    bit = bit << 1;
-  }
-}
-
-void print_int_bits(int var)
-{
-  for (size_t i = 0; i < sizeof(var); i++)
-  {
-    print_bit(*((unsigned char*)&var + (sizeof(var) - i - 1)));
-  }
-}
-
-int Fixed::fractional_bit;
+const int Fixed::fractional_bit = 8;
 
 Fixed::Fixed(void)
 {
@@ -34,14 +17,12 @@ Fixed::Fixed(const Fixed &other)
 Fixed::Fixed(int num)
 {
   std::cout << "Int constructor called\n";
-  fractional_bit = 8;
   m_num = (num << fractional_bit) | ((num < 0) << 31);
 }
 
 Fixed::Fixed(const float num)
 {
   std::cout << "Float constructor called\n";
-  fractional_bit = 8;
   m_num = int(roundf(num * (1 << fractional_bit)));
 }
 

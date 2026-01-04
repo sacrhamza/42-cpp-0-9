@@ -1,16 +1,16 @@
 #include <iostream>
 #include "Point.hpp"
 
-bool bsp( Point const a, Point const b, Point const c, Point const point)
+int main( void )
 {
-	Point a_point = a - point;
-	Point 
-	return (false);
-}
+	bool insdie =  bsp(Point(0, 2), Point(1, 0), Point(0, 0), Point(0.5f, 0.5));
+	bool not_inside =  bsp(Point(0, 2), Point(1, 0), Point(0, 0), Point(0.5f, 0.5));
+	bool on_edge =  bsp(Point(0, 2), Point(1, 0), Point(0, 0), Point(0.5f, 0.5));
+	bool is_vertex =  bsp(Point(0, 2), Point(1, 0), Point(0, 0), Point(0.5f, 0.5));
 
-
-
-
-int main( void ) {
-    return 0;
+	std::cout << insdie << "\n";
+	std::cout << not_inside << "\n";
+	std::cout << on_edge << "\n";
+	std::cout << is_vertex << "\n";
+  return 0;
 }
