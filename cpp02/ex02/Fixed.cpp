@@ -12,7 +12,7 @@ Fixed::Fixed(const Fixed &other)
   *this = other;
 }
 
-Fixed::Fixed(int num)
+Fixed::Fixed(const int num)
 {
   m_num = (num * (1 << fractional_bit));
 }

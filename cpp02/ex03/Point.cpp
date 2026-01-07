@@ -25,7 +25,9 @@ const Fixed& Point::get_x(void) const
 {
 	return (x);
 }
+
 const Fixed& Point::get_y(void) const
 {
 	return (y);
 }
+

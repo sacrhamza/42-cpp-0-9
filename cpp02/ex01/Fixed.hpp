@@ -1,7 +1,6 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
-#include <ostream>
 #include <cmath>
 
 class Fixed
@@ -13,7 +12,7 @@ class Fixed
   public:
     Fixed(void);
     Fixed(const Fixed &other);
-    Fixed(int num);
+    Fixed(const int num);
     Fixed(const float num);
     float toFloat(void) const;
     int toInt(void) const;

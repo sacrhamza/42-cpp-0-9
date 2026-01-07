@@ -14,10 +14,10 @@ Fixed::Fixed(const Fixed &other)
   *this = other;
 }
 
-Fixed::Fixed(int num)
+Fixed::Fixed(const int num)
 {
   std::cout << "Int constructor called\n";
-  m_num = (num << fractional_bit) | ((num < 0) << 31);
+  m_num = (num * (1 << fractional_bit));
 }
 
 Fixed::Fixed(const float num)
