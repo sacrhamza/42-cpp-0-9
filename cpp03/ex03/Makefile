@@ -4,11 +4,11 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./main.cpp ./ClapTrap.cpp ./FragTrap.cpp ./
+FILES = ./main.cpp ./ClapTrap.cpp ./FragTrap.cpp ./DiamondTrap.cpp ./ScavTrap.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow
 
 NAME = DiamondTrap
 
@@ -28,5 +28,6 @@ fclean: clean
 
 re: fclean $(NAME)
 
-run: $(NAME)
+run: $(NAME) clean
 	./$(NAME)
+	rm -rf $(NAME)

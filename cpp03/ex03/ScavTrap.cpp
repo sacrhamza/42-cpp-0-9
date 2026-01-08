@@ -1,17 +1,14 @@
 #include "ScavTrap.hpp"
-#include <iostream>
 
-ScavTrap::ScavTrap(void) : ClapTrap("no_name")
+ScavTrap::ScavTrap(void) : ClapTrap()
 {
+	m_energy_points = 50;
   std::cout << "ScavTrap Default Constructor: My heart is quiet because it belongs to " << m_name << "\n";
 }
 
 ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 {
-  std::cout << "ScavTrap Constructor: " << m_name << " born to fight!!\n";
-  m_hit_points = 100;
-  m_energy_points = 50;
-  m_attack_damage = 20;
+  std::cout << "Parameterized Constructor: " << m_name << " born to fight!!\n";
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)

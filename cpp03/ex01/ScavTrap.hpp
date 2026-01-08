@@ -2,11 +2,13 @@
 #define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
+#include <iostream>
 
 class ScavTrap : public ClapTrap
 {
 	private:
 		ScavTrap(void);
+
 	public:
 		ScavTrap(const ScavTrap& other);
 		ScavTrap& operator=(const ScavTrap& other);

@@ -11,7 +11,7 @@ ClapTrap::ClapTrap(const std::string& name) :
   m_energy_points(10),
   m_attack_damage(0)
 {
-  std::cout << "ClapTrap Constructor: " << m_name << " born to fight!!\n";
+  std::cout << "ClapTrap Parameterized Constructor: " << m_name << " born to fight!!\n";
 }
 
 

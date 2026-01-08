@@ -1,17 +1,16 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-FragTrap::FragTrap(void) : ClapTrap("no one")
+FragTrap::FragTrap(void) : ClapTrap()
 {
+	m_hit_points = 100;
+	m_attack_damage = 30;
   std::cout << "FragTrap Default Constructor: My heart is quiet because it belongs to " << m_name << "\n";
 }
 
 FragTrap::FragTrap(const std::string &name) : ClapTrap(name)
 {
   std::cout << "FragTrap Constructor: " << m_name << " born to fight!!\n";
-	m_hit_points = 100;
-	m_energy_points = 50;
-	m_attack_damage = 20;
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
