@@ -10,7 +10,7 @@ OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = polymorphism
+NAME = abstract
 
 all: $(NAME)
 

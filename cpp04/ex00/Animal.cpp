@@ -2,7 +2,6 @@
 
 Animal::Animal(void)
 {
-  type = "Animal";
   std::cout << "Animal default constructor called\n";
 }
 
@@ -14,7 +13,9 @@ Animal::Animal(const Animal& other) : type(other.type)
 Animal& Animal::operator=(const Animal& other)
 {
   std::cout << "Animal copy assigment operator called\n";
+
   type = other.type;
+
   return (*this);
 }
 

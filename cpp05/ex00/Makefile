@@ -4,18 +4,18 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./Dog.cpp ./Animal.cpp ./Cat.cpp ./main.cpp ./WrongCat.cpp ./WrongAnimal.cpp ./Brain.cpp
+FILES = ./main.cpp ./Bureaucrat.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = brain
+NAME = bureaucrat
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CPP) $(CPP_FLAGS) $^ -o $(NAME) 
+	$(CPP) $^ -o $(NAME) 
 
 %.o: %.cpp
 	$(CPP) $(CPP_FLAGS) -c $< -o $@

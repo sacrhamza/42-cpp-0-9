@@ -20,7 +20,6 @@ int main()
   delete j;
   delete i;
  
-
   const WrongAnimal* wrong_meta = new WrongAnimal();
   const WrongAnimal* wrong_j = new WrongCat();
 
@@ -29,7 +28,7 @@ int main()
 
   std::cout << wrong_meta->getType() << " " << std::endl;
   std::cout << wrong_j->getType() << " " << std::endl;
-  wrong_meta->makeSound(); //will output the cat sound!
+  wrong_meta->makeSound(); 
   wrong_j->makeSound();
 
   // cleanup
