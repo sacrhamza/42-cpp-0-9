@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string &name, unsigned int grade) throw(Bureau
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) :
 	m_name(other.m_name),
-	m_grade(other.m_grade)	
+	m_grade(other.m_grade)
 {
   std::cout << "Bureaucrat copy constructor called\n";
 }

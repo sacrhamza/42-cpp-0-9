@@ -1,0 +1,1 @@
+/home/hsacr/COMMON_CORE/cpp_intra/42-cpp-0-9/cpp05/ex00/Bureaucrat.hpp

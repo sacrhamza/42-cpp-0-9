@@ -1,9 +1,17 @@
 #include "Bureaucrat.hpp"
+#include <exception>
 
 int main(void)
 {
-	Bureaucrat normal_bureaucrat("hey", 1);	
-	std::cout << normal_bureaucrat;
+	try{
+		Bureaucrat normal_bureaucrat("hey", 1);	
+		std::cout << normal_bureaucrat;
+		normal_bureaucrat.incrementGrade();
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what() << "\n";
+	}
 
 	try {
 		Bureaucrat c("some name", 200);
@@ -22,7 +30,8 @@ int main(void)
 	}
 
 	try {
-		normal_bureaucrat.incrementGrade();
+		Bureaucrat d("some name", 150);
+		d.decrementGrade();
 	}
 	catch (std::exception& e)
 	{

@@ -2,7 +2,7 @@ CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = megaphone 
+NAME = megaphone
 
 FILES = ./megaphone.cpp
 
@@ -23,3 +23,9 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(NAME)
 
 re: fclean $(NAME)
+
+realpath := $(shell realpath .)
+
+test: re
+	echo 'testing'
+	"$(realpath)/$(NAME)"

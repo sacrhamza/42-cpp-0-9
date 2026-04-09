@@ -41,7 +41,6 @@ class Bureaucrat
 		};
 
 		Bureaucrat(const std::string &name, unsigned int grade = 150) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException);
-		// Bureaucrat(const std::string &name, int grade);
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat& operator=(const Bureaucrat& other);
 

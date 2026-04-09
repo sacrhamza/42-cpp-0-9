@@ -23,3 +23,8 @@ re: fclean $(NAME)
 
 run:
 	@./$(NAME)
+
+
+test: re
+	echo 'testing'
+	./"$(NAME)"

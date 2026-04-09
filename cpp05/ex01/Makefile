@@ -4,13 +4,13 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./Dog.cpp ./Animal.cpp ./Cat.cpp ./main.cpp ./WrongCat.cpp ./WrongAnimal.cpp
+FILES = ./main.cpp ./Bureaucrat.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = polymorphism
+NAME = bureaucrat
 
 all: $(NAME)
 
@@ -29,4 +29,8 @@ fclean: clean
 re: fclean $(NAME)
 
 run: $(NAME)
-	./$(NAME)
+	./"$(NAME)"
+
+test: re
+	echo 'testing'
+	./"$(NAME)"

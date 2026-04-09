@@ -23,3 +23,8 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(NAME)
 
 re: fclean $(NAME)
+
+
+test: re
+	echo 'testing'
+	./"$(NAME)"
