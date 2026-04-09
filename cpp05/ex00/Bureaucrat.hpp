@@ -1,8 +1,11 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include <exception>
+#include <stdexcept>
+#include <string>
 #include <iostream>
+#include <sstream>
+
 
 class Bureaucrat
 {
@@ -14,16 +17,30 @@ class Bureaucrat
 		unsigned int m_grade;
 
 	public:
-		class GradeTooHighException : std::exception
+		class GradeTooHighException : public std::runtime_error
 		{
-			void hey();
-		};
-		class GradeTooLowException : std::exception
-		{
-			// const char* what() const throw();
+			private:
+				unsigned int m_grade;
+				std::string m_msg;
+			public:
+				GradeTooHighException(unsigned int grade);
+				const char* what() const throw();
+				~GradeTooHighException() throw();
 		};
 
-		Bureaucrat(const std::string &name = "default", int grade = 150);
+		class GradeTooLowException : public std::runtime_error
+		{
+			private:
+				unsigned int m_grade;
+				std::string m_msg;
+
+			public:	
+				GradeTooLowException(unsigned int grade);
+				const char* what() const throw();
+				~GradeTooLowException() throw();
+		};
+
+		Bureaucrat(const std::string &name, unsigned int grade = 150) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException);
 		// Bureaucrat(const std::string &name, int grade);
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat& operator=(const Bureaucrat& other);
@@ -31,14 +48,12 @@ class Bureaucrat
 		std::string getName(void) const;
 		int getGrade(void) const;
 
-		int incrementGrade() throw(Bureaucrat::GradeTooHighException);
-		int decrementGrade() throw(Bureaucrat::GradeTooLowException);
+		unsigned int incrementGrade() throw(Bureaucrat::GradeTooHighException);
+		unsigned int decrementGrade() throw(Bureaucrat::GradeTooLowException);
 
 		~Bureaucrat(void);
 
 };
-
-
 
 // insertion operator
 std::ostream &operator<<(std::ostream &out, Bureaucrat &bureaucrat);

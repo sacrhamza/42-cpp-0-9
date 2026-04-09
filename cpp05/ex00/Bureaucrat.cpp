@@ -7,14 +7,16 @@ Bureaucrat::Bureaucrat(void) :
   std::cout << "Bureaucrat default constructor called\n";
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) :
+Bureaucrat::Bureaucrat(const std::string &name, unsigned int grade) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException) :
 	m_name(name)
 {
   std::cout << "Bureaucrat paramatrized constructor called\n";
-	if (grade > 150)
-		;
-	else if (grade < 1)
-		;
+	if (grade > 150){
+		throw (GradeTooLowException(grade));
+	}
+	else if (grade < 1) {
+		throw (GradeTooHighException(grade));
+	}
 	m_grade = grade;
 }
 
@@ -56,23 +58,54 @@ Bureaucrat::~Bureaucrat(void)
 }
 
 
-int Bureaucrat::incrementGrade() throw(GradeTooHighException)
+unsigned int Bureaucrat::incrementGrade() throw(GradeTooHighException)
 {
 	if (m_grade == 1) {
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException(m_grade);
 	}
 	return (--m_grade);
 }
 
-int Bureaucrat::decrementGrade() throw(GradeTooLowException)
+unsigned int Bureaucrat::decrementGrade() throw(GradeTooLowException)
 {
 	if (m_grade == 150) {
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException(m_grade);
 	}
 	return (++m_grade);
 }
 
-void Bureaucrat::GradeTooHighException::hey()
+Bureaucrat::GradeTooHighException::GradeTooHighException(unsigned int grade)
+	: runtime_error("grade too high"),
+		m_grade(grade)	
 {
-	std::cout << "hey";
+	std::stringstream stream;
+	stream << m_grade;
+	m_msg = runtime_error::what() + std::string(": ") + stream.str();
+}
+
+const char* Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return (m_msg.c_str());
+}
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {
+	std::cout << "GradeTooLowException destructor\n";
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(unsigned int grade)
+	: runtime_error("grade too low"),
+		m_grade(grade)	
+{
+	std::stringstream stream;
+	stream << m_grade;
+	m_msg = runtime_error::what() + std::string(": ") + stream.str();
+}
+
+const char* Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return (m_msg.c_str());
+}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {
+	std::cout << "GradeTooHighException destructor\n";
 }
