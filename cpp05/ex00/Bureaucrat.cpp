@@ -93,7 +93,7 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {
 }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(unsigned int grade)
-	: runtime_error("grade too low"),
+	: runtime_error("Bureaucrat grade too low"),
 		m_grade(grade)	
 {
 	std::stringstream stream;

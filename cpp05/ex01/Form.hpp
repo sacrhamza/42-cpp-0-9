@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 #include <string>
+#include <iostream>
+#include <sstream>
 
 class Form
 {
@@ -13,20 +15,36 @@ class Form
 		const int m_execute_grade;
 
 	public:
-		Form() throw();
-		Form(std::string name, int sign_grade, int execute_grade) throw();
-		class GradeTooHighException : std::runtime_error
+
+class GradeTooHighException : std::runtime_error
 	{
+		private:
+			std::string m_msg;
 		public:
-			GradeTooHighException() throw();
-			const char* what() throw();
+			GradeTooHighException(int grade);
+			const char* what() const throw();
+			~GradeTooHighException() throw();
 	};
-		class GradeTooLowException : std::runtime_error
+	
+	class GradeTooLowException : std::runtime_error
 	{
+		private:
+			std::string m_msg;
 		public:
-			GradeTooLowException() throw();
-			const char* what() throw();
+			GradeTooLowException(int grade);
+			const char* what() const throw();
+			~GradeTooLowException() throw();
 	};
+
+		Form();
+		Form(std::string name, int sign_grade, int execute_grade) throw(Form::GradeTooHighException, Form::GradeTooLowException);
+		Form(const Form &other);
+		Form& operator=(const Form& other);
+		~Form();
+	
+	
+
+	// Form getters
 	std::string getName();
 	bool isSigned();
 	int getSignGrade();

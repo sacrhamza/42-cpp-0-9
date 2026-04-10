@@ -4,13 +4,13 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./main.cpp ./Bureaucrat.cpp
+FILES = ./Form.cpp ./main.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = bureaucrat
+NAME = form
 
 all: $(NAME)
 
