@@ -4,13 +4,11 @@ Bureaucrat::Bureaucrat(void) :
 	m_name("unkown"),
 	m_grade(150)
 {
-  std::cout << "Bureaucrat default constructor called\n";
 }
 
-Bureaucrat::Bureaucrat(const std::string &name, unsigned int grade) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException) :
+Bureaucrat::Bureaucrat(const std::string &name, int grade) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException) :
 	m_name(name)
 {
-  std::cout << "Bureaucrat paramatrized constructor called\n";
 	if (grade > 150){
 		throw (GradeTooLowException(grade));
 	}
@@ -24,13 +22,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) :
 	m_name(other.m_name),
 	m_grade(other.m_grade)
 {
-  std::cout << "Bureaucrat copy constructor called\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
-  std::cout << "Bureaucrat copy assigment operator called\n";
-
 	m_grade = other.m_grade;
 
   return (*this);
@@ -58,7 +53,7 @@ Bureaucrat::~Bureaucrat(void)
 }
 
 
-unsigned int Bureaucrat::incrementGrade() throw(GradeTooHighException)
+int Bureaucrat::incrementGrade() throw(GradeTooHighException)
 {
 	if (m_grade == 1) {
 		throw Bureaucrat::GradeTooHighException(m_grade);
@@ -66,7 +61,7 @@ unsigned int Bureaucrat::incrementGrade() throw(GradeTooHighException)
 	return (--m_grade);
 }
 
-unsigned int Bureaucrat::decrementGrade() throw(GradeTooLowException)
+int Bureaucrat::decrementGrade() throw(GradeTooLowException)
 {
 	if (m_grade == 150) {
 		throw Bureaucrat::GradeTooLowException(m_grade);
@@ -74,12 +69,11 @@ unsigned int Bureaucrat::decrementGrade() throw(GradeTooLowException)
 	return (++m_grade);
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(unsigned int grade)
-	: runtime_error("grade too high"),
-		m_grade(grade)	
+Bureaucrat::GradeTooHighException::GradeTooHighException(int grade)
+	: runtime_error("grade too high")
 {
 	std::stringstream stream;
-	stream << m_grade;
+	stream << grade;
 	m_msg = runtime_error::what() + std::string(": ") + stream.str();
 }
 
@@ -92,12 +86,11 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {
 	std::cout << "GradeTooLowException destructor\n";
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(unsigned int grade)
-	: runtime_error("Bureaucrat grade too low"),
-		m_grade(grade)	
+Bureaucrat::GradeTooLowException::GradeTooLowException(int grade)
+	: runtime_error("Bureaucrat grade too low")	
 {
 	std::stringstream stream;
-	stream << m_grade;
+	stream << grade;
 	m_msg = runtime_error::what() + std::string(": ") + stream.str();
 }
 

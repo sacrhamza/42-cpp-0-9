@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 
+class Bureaucrat;
+
 class Form
 {
 	private:
@@ -14,9 +16,12 @@ class Form
 		const int m_sign_grade;
 		const int m_execute_grade;
 
+	protected:
+		Form();
+
 	public:
 
-class GradeTooHighException : std::runtime_error
+	class GradeTooHighException : public std::runtime_error
 	{
 		private:
 			std::string m_msg;
@@ -26,7 +31,7 @@ class GradeTooHighException : std::runtime_error
 			~GradeTooHighException() throw();
 	};
 	
-	class GradeTooLowException : std::runtime_error
+	class GradeTooLowException : public std::runtime_error
 	{
 		private:
 			std::string m_msg;
@@ -36,20 +41,23 @@ class GradeTooHighException : std::runtime_error
 			~GradeTooLowException() throw();
 	};
 
-		Form();
 		Form(std::string name, int sign_grade, int execute_grade) throw(Form::GradeTooHighException, Form::GradeTooLowException);
 		Form(const Form &other);
 		Form& operator=(const Form& other);
+		void beSigned(const Bureaucrat& bureaucrat) throw(Form::GradeTooLowException);
 		~Form();
 	
 	
 
 	// Form getters
-	std::string getName();
-	bool isSigned();
-	int getSignGrade();
-	int getExecuteGrade();
+	std::string getName() const;
+	bool isSigned() const;
+	int getSignGrade() const;
+	int getExecuteGrade() const;
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Form& form);
+
 
 #endif

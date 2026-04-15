@@ -4,11 +4,11 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./Form.cpp ./main.cpp
+FILES = ./Form.cpp ./Bureaucrat.cpp ./main.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g -D DEBUG
 
 NAME = form
 

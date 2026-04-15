@@ -14,16 +14,15 @@ class Bureaucrat
 
 	private:
 		const std::string m_name;
-		unsigned int m_grade;
+		int m_grade;
 
 	public:
 		class GradeTooHighException : public std::runtime_error
 		{
 			private:
-				unsigned int m_grade;
 				std::string m_msg;
 			public:
-				GradeTooHighException(unsigned int grade);
+				GradeTooHighException(int grade);
 				const char* what() const throw();
 				~GradeTooHighException() throw();
 		};
@@ -31,24 +30,23 @@ class Bureaucrat
 		class GradeTooLowException : public std::runtime_error
 		{
 			private:
-				unsigned int m_grade;
 				std::string m_msg;
 
 			public:	
-				GradeTooLowException(unsigned int grade);
+				GradeTooLowException(int grade);
 				const char* what() const throw();
 				~GradeTooLowException() throw();
 		};
 
-		Bureaucrat(const std::string &name, unsigned int grade = 150) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException);
+		Bureaucrat(const std::string &name, int grade) throw(Bureaucrat::GradeTooHighException, Bureaucrat::GradeTooLowException);
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat& operator=(const Bureaucrat& other);
 
 		std::string getName(void) const;
 		int getGrade(void) const;
 
-		unsigned int incrementGrade() throw(Bureaucrat::GradeTooHighException);
-		unsigned int decrementGrade() throw(Bureaucrat::GradeTooLowException);
+		int incrementGrade() throw(Bureaucrat::GradeTooHighException);
+		int decrementGrade() throw(Bureaucrat::GradeTooLowException);
 
 		~Bureaucrat(void);
 
