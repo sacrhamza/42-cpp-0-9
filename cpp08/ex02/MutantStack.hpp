@@ -13,9 +13,6 @@ template <typename value_type, class Container = std::deque<value_type> > class 
 	typedef typename base_stack::container_type container_type;
 	typedef typename container_type::iterator iterator_type;
 
-	private:
-		
-		Container m_data;
 	public:
 
 		class iterator {
@@ -24,6 +21,9 @@ template <typename value_type, class Container = std::deque<value_type> > class 
 			public:	
 			iterator(const iterator_type& it) : m_it(it) {}
 			iterator(const iterator& it) : m_it(it.m_it) {}
+			iterator& operator=(const iterator& other) {
+				m_it = other.m_it;
+			}
 
 			iterator& operator++(int) {
 				m_it++;
@@ -53,10 +53,18 @@ template <typename value_type, class Container = std::deque<value_type> > class 
 			bool operator!=(const iterator& it) {
 				return (m_it != it.m_it);
 			}
+
+			bool operator==(const iterator& it) {
+				return (m_it == it.m_it);
+			}
 		};
 
-		MutantStack(const Container& cont = Container()) : base_stack(cont) {}
-		MutantStack(const MutantStack& other) : base_stack(other) {}
+		MutantStack(const Container& cont = Container()) : base_stack(cont) {} // takes container
+		MutantStack(const MutantStack& other) : base_stack(other) {} // copy constructor
+		MutantStack& operator=(const MutantStack& other) {
+			base_stack::operator=(other);
+			return (*this);
+		}
 
 		iterator begin() {
 			return (base_stack::c.begin());
