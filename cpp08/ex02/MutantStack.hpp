@@ -11,9 +11,6 @@ template <typename value_type, class Container = std::deque<value_type> > class 
 
 	typedef std::stack<value_type, Container> base_stack ;
 	typedef typename base_stack::container_type container_type;
-	typedef typename base_stack::reference reference;
-	typedef typename base_stack::const_reference const_reference;
-	typedef typename base_stack::size_type size_type;
 	typedef typename container_type::iterator iterator_type;
 
 	private:
@@ -60,31 +57,6 @@ template <typename value_type, class Container = std::deque<value_type> > class 
 
 		MutantStack(const Container& cont = Container()) : base_stack(cont) {}
 		MutantStack(const MutantStack& other) : base_stack(other) {}
-
-		// reference top(void) {
-		// 	return base_stack::top();
-		// }
-		//
-		// const_reference top(void) const {
-		// 	return base_stack::top();
-		// }
-		//
-		// bool empty() const {
-		// 	return base_stack::empty();
-		// }
-		//
-		// size_type size() const {
-		// 	return base_stack::size();
-		// }
-		
-		// void push(const value_type& value) 
-		// {
-		// 	base_stack::push(value);
-		// };
-
-		// void pop() {
-		// 	base_stack::pop();
-		// }
 
 		iterator begin() {
 			return (base_stack::c.begin());
