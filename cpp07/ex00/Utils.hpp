@@ -2,8 +2,7 @@
 #define _UTILS_H
 
 template <typename T> void swap(T& a, T& b) {
-	T tmp;
-	tmp = a;
+	T tmp = a;
 	a = b;
 	b = tmp;
 }
@@ -20,4 +19,5 @@ template <typename T> T max(const T& a, const T& b) {
 		return (a);
 	return (b);
 }
+
 #endif
