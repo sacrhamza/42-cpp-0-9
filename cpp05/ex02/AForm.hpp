@@ -8,7 +8,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
 		const std::string m_name;
@@ -17,7 +17,7 @@ class Form
 		const unsigned int m_execute_grade;
 
 	protected:
-		Form();
+		AForm();
 
 	public:
 
@@ -41,15 +41,15 @@ class Form
 			~GradeTooLowException() throw();
 	};
 
-		Form(std::string name, unsigned int sign_grade, unsigned int execute_grade) throw(Form::GradeTooHighException, Form::GradeTooLowException);
-		Form(const Form &other);
-		Form& operator=(const Form& other);
-		void beSigned(const Bureaucrat& bureaucrat) throw(Form::GradeTooLowException);
-		~Form();
+		AForm(std::string name, unsigned int sign_grade, unsigned int execute_grade) throw(AForm::GradeTooHighException, AForm::GradeTooLowException);
+		AForm(const AForm &other);
+		AForm& operator=(const AForm& other);
+		void beSigned(const Bureaucrat& bureaucrat) throw(AForm::GradeTooLowException);
+		~AForm();
 	
 	
 
-	// Form getters
+	// AForm getters
 	std::string getName() const;
 	bool isSigned() const;
 	unsigned int getSignGrade() const;
@@ -57,7 +57,7 @@ class Form
 
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& form);
+std::ostream& operator<<(std::ostream& out, const AForm& form);
 
 
 #endif

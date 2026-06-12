@@ -10,7 +10,7 @@ Form::Form(void) :
 	std::cout << "Default Constructor called\n";
 }
 
-Form::Form(std::string name, int sign_grade, int execute_grade) throw(Form::GradeTooHighException, Form::GradeTooLowException) :
+Form::Form(std::string name, unsigned int sign_grade, unsigned int execute_grade) throw(Form::GradeTooHighException, Form::GradeTooLowException) :
 	m_name(name), 
 	m_sign_grade(sign_grade),
 	m_execute_grade(execute_grade)
@@ -43,11 +43,23 @@ Form& Form::operator=(const Form& other)
 }
 
 
+std::ostream& operator<<(std::ostream& out, const Form& form) {
+	std::string isSigned = form.isSigned() ? " is signed" : " is not signed";
+
+	out << "form " << "'" << form.getName() << "'," << isSigned << " sign grade = "
+		<< form.getSignGrade() << " execute grade = " << form.getExecuteGrade()
+		<< "\n";
+
+	return (out);
+}
+
+
 void Form::beSigned(const Bureaucrat& bureaucrat) throw(Form::GradeTooLowException)
 {
-	if (bureaucrat.getGrade() > m_sign_grade)	
+	unsigned int grade = bureaucrat.getGrade();
+	if (grade > m_sign_grade)	
 	{
-		throw Form::GradeTooLowException(bureaucrat.getGrade());
+		throw Form::GradeTooLowException(grade);
 	}
 	m_is_signed = true;
 }
@@ -64,15 +76,15 @@ bool Form::isSigned(void) const {
 	return (m_is_signed);
 }
 
-int Form::getSignGrade(void) const {
+unsigned int Form::getSignGrade(void) const {
 	return (m_sign_grade);
 };
 
-int Form::getExecuteGrade(void) const {
+unsigned int Form::getExecuteGrade(void) const {
 	return (m_execute_grade);
 };
 
-Form::GradeTooHighException::GradeTooHighException(int grade)
+Form::GradeTooHighException::GradeTooHighException(unsigned int grade)
 : runtime_error("Form grade too high") {
 	std::stringstream stream;
 	stream << grade;
@@ -88,7 +100,7 @@ Form::GradeTooHighException::~GradeTooHighException() throw() {
 
 }
 
-Form::GradeTooLowException::GradeTooLowException(int grade)
+Form::GradeTooLowException::GradeTooLowException(unsigned int grade)
 : runtime_error("Form grade too low") {
 	std::stringstream stream;
 	stream << grade;
@@ -100,20 +112,5 @@ const char* Form::GradeTooLowException::what() const throw() {
 	return (m_msg.c_str());
 }
 
-Form::GradeTooLowException::~GradeTooLowException() throw() {
+Form::GradeTooLowException::~GradeTooLowException() throw() {}
 
-}
-
-std::ostream& operator<<(std::ostream& out, const Form& form) {
-	std::string isSigned;
-	if (form.isSigned()) {
-		isSigned = " is signed";
-	}
-	else {
-		isSigned = " is not signed";
-	}
-	out << "form " << "'" << form.getName() << "'," << isSigned << " sign grade = "
-		<< form.getSignGrade() << " execute grade = " << form.getExecuteGrade()
-		<< "\n";
-	return (out);
-}

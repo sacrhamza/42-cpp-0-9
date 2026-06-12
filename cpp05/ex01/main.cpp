@@ -4,6 +4,7 @@
 
 void test_beSigned_signForm(void)
 {
+	// good alan will sign the form3
 	try {
 		Bureaucrat bureaucrat("Alan", 20);
 		Form form("form3", 30, 20);
@@ -25,18 +26,18 @@ void test_beSigned_signForm(void)
 	}	
 }
 
-void test_form_getters_insertion(void) {
+void testFormInsertionOp(void) {
 	try {
 		Form form("form2", 150, 150);
 		std::cout << form;
 	}
 	catch(const std::exception &e)
 	{
-		std::cout << e.what()	 << "\n";
+		std::cerr << e.what()	 << "\n";
 	}
 }
 
-void test_form_constructors(void) {
+void testFormConstructors(void) {
 	// too low
 	try {
 		Form form1("form1", 152, 200);
@@ -48,7 +49,7 @@ void test_form_constructors(void) {
 
 	// too high
 	try {
-		Form form1("form1", 0, -1);
+		Form form1("form1", 0, 0);
 	}
 	catch(const std::runtime_error &e)
 	{
@@ -56,7 +57,7 @@ void test_form_constructors(void) {
 	}
 
 	try {
-		Form form1("form1", 150, -1);
+		Form form1("form1", 150, 0);
 	}
 	catch(const std::exception &e)
 	{
@@ -76,8 +77,8 @@ void test_form_constructors(void) {
 
 int main(void) {
 
-	test_form_constructors();
-	test_form_getters_insertion();
+	testFormConstructors();
+	testFormInsertionOp();
 	test_beSigned_signForm();
 
 	return (0);

@@ -4,13 +4,13 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES = ./Dog.cpp ./Animal.cpp ./Cat.cpp ./main.cpp ./WrongCat.cpp ./WrongAnimal.cpp
+FILES =  main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g -D DEBUG
 
-NAME = polymorphism
+NAME = form
 
 all: $(NAME)
 
@@ -29,4 +29,8 @@ fclean: clean
 re: fclean $(NAME)
 
 run: $(NAME)
-	./$(NAME)
+	./"$(NAME)"
+
+test: re
+	echo 'testing'
+	./"$(NAME)"

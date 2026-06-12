@@ -1,0 +1,17 @@
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
+
+#include <iostream>
+#include "AForm.hpp"
+
+class RobotomyRequestForm : AForm {
+	protected:
+		RobotomyRequestForm(void);
+	public:
+		RobotomyRequestForm(const std::string& target);
+		RobotomyRequestForm(const RobotomyRequestForm& other);
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+		~RobotomyRequestForm(void);
+};
+
+#endif
