@@ -2,8 +2,8 @@
 #include"iter.hpp"
 
 template<typename T> void print(T elem) {
+	// elem = 2;
 	std::cout << elem << "\n";
-	elem = 2;
 }
 
 int main(void){

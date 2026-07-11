@@ -3,7 +3,7 @@
 #include <iostream>
 #include "AForm.hpp" 
 
-class PresidentialPardonForm : AForm {
+class PresidentialPardonForm : public AForm {
 	protected:
     PresidentialPardonForm(void);
 

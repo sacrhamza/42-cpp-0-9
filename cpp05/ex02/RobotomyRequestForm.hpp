@@ -4,7 +4,7 @@
 #include <iostream>
 #include "AForm.hpp"
 
-class RobotomyRequestForm : AForm {
+class RobotomyRequestForm : public AForm {
 	protected:
 		RobotomyRequestForm(void);
 	public:
