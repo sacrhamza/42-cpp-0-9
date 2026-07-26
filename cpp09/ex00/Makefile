@@ -1,10 +1,10 @@
 CPP = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+#CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = span
+NAME = btc
 
-FILES = main.cpp ./Span.cpp
+FILES = main.cpp ./BitcoinExchange.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
