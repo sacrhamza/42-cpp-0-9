@@ -48,7 +48,7 @@ void Bureaucrat::signForm(Form& form) const {
 	}
 	catch(const Form::GradeTooLowException& e)
 	{
-		std::cout << m_name << " couldn't sign " << form
+		std::cout << m_name << " couldn't sign " << form.getName()
 			<< " because " << e.what() << "\n";
 	}
 }
