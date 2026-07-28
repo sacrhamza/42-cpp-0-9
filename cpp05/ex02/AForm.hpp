@@ -17,6 +17,7 @@ class AForm
 		const unsigned int m_execute_grade;
 
 	protected:
+		void checkForm(const Bureaucrat& bureaucrat) const throw (GradeTooLowException) ;
 		AForm();
 
 	public:
@@ -45,6 +46,8 @@ class AForm
 		AForm(const AForm &other);
 		AForm& operator=(const AForm& other);
 		void beSigned(const Bureaucrat& bureaucrat) throw(AForm::GradeTooLowException);
+		void execute(Bureaucrat const & executor) const;
+		virtual void takeAction() const =  0;
 		~AForm();
 	
 	

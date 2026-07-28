@@ -4,8 +4,11 @@
 #include "AForm.hpp" 
 
 class PresidentialPardonForm : public AForm {
+	private:
+		std::string m_target;
 	protected:
     PresidentialPardonForm(void);
+		void takeAction() const;
 
   public:
     PresidentialPardonForm(std::string target);

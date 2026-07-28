@@ -1,5 +1,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include <stdexcept>
 
 AForm::AForm(void) : 
 	m_name("default"),
@@ -40,6 +41,15 @@ AForm& AForm::operator=(const AForm& other)
 {
 	m_is_signed = other.m_is_signed;
 	return (*this);
+}
+
+void AForm::execute(const Bureaucrat& bureaucrat) const {
+	if (!m_is_signed)
+		throw (std::runtime_error("form is not signed"));
+	unsigned int bureaucrat_grade = bureaucrat.getGrade();
+	if (m_execute_grade < bureaucrat_grade)
+		throw (GradeTooLowException(bureaucrat_grade));
+	takeAction();
 }
 
 

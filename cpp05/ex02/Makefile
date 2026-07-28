@@ -4,13 +4,13 @@ RM = rm
 
 RM_OPTION = -f
 
-FILES =  main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+FILES =  main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp ./AForm.cpp ./Bureaucrat.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g -D DEBUG
 
-NAME = form
+NAME = aform
 
 all: $(NAME)
 
@@ -28,9 +28,3 @@ fclean: clean
 
 re: fclean $(NAME)
 
-run: $(NAME)
-	./"$(NAME)"
-
-test: re
-	echo 'testing'
-	./"$(NAME)"

@@ -6,7 +6,7 @@
 #include <iostream>
 #include <sstream>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -50,7 +50,9 @@ class Bureaucrat
 		Bureaucrat& decrementGrade() throw(Bureaucrat::GradeTooLowException);
 
 
-		void signForm(Form& form) const;
+		void signForm(AForm& form) const;
+
+		void executeForm(AForm const & form) const;
 
 		~Bureaucrat(void);
 

@@ -12,6 +12,7 @@ class ShrubberyCreationForm : public AForm
 
 	protected:
 		ShrubberyCreationForm(void);
+		void takeAction() const;
 
 	public:
 		ShrubberyCreationForm(std::string target);
