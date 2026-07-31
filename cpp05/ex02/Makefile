@@ -8,7 +8,7 @@ FILES =  main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCr
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g -D DEBUG
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = aform
 

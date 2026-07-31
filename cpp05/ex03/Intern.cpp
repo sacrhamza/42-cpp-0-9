@@ -3,9 +3,12 @@
 
 Intern::Intern(void) {}
 
-Intern::Intern(const Intern& other) {}
+Intern::Intern(const Intern& other) {
+	(void)other;
+}
 
 Intern& Intern::operator=(const Intern& other) {
+	(void)other;
   return (*this);
 }
 
@@ -21,16 +24,16 @@ AForm *Intern::makeForm(const std::string& name, const std::string& target) {
 
 	AFormMap handlerMap[3] = {
 		{"shrubbery creation", &Intern::newShrubberyCreationForm},
-		{"robotmy request", &Intern::newRobotomyRequestForm},
+		{"robotomy request", &Intern::newRobotomyRequestForm},
 		{"presidential pardon", &Intern::newPresidentialPardonForm}
 	};
 
 	int len = sizeof(handlerMap) / sizeof(AFormMap);
 	for (int idx = 0; idx < len; idx++) {
-		if (handlerMap->name == name) {
+		if (handlerMap[idx].name == name) {
 			handler = handlerMap[idx].func;
 			form = (this->*handler)(target);
-			std::cout << "Intern creates " << form << "\n";
+			std::cout << "Intern creates " << name << "\n";
 			return (form);
 		}
 	}

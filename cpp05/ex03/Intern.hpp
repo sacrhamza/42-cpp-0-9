@@ -2,10 +2,10 @@
 #define INTERN_HPP
 
 #include <iostream>
-#include "../ex02/AForm.hpp"
-#include "../ex02/RobotomyRequestForm.hpp"
-#include "../ex02/PresidentialPardonForm.hpp"
-#include "../ex02/ShrubberyCreationForm.hpp"
+#include "AForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 class Intern {
   public:
