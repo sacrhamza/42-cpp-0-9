@@ -1,15 +1,38 @@
 CPP = c++
 
-CPP_FLAGS = -std=c++98 -Wall -Werror -Wextra
+RM = rm
 
-SRCS = ./main.cpp ./ScalarConverter.cpp
+RM_OPTION = -f
 
-OBJS = $(SRCS:%.cpp=%.o)
+FILES = ./main.cpp ./CharHandler.cpp ./Handler.cpp\
+			./ScalarConverter.cpp ./IntHandler.cpp ./DoubleHandler.cpp\
+			./FloatHandler.cpp ./utils.cpp
+
+OBJECTS = $(FILES:%.cpp=%.o)
+
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = convert
 
-$(NAME) : $(OBJS)
-	$(CPP) $(CPP_FLAGS) $^ -o $@
+all: $(NAME)
+
+$(NAME): $(OBJECTS)
+	$(CPP) $^ -o $(NAME) 
 
 %.o: %.cpp
 	$(CPP) $(CPP_FLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(RM_OPTION) $(OBJECTS)
+
+fclean: clean
+	$(RM) $(RM_OPTION) $(NAME)
+
+re: fclean $(NAME)
+
+run: $(NAME)
+	./"$(NAME)"
+
+test: re
+	echo 'testing'
+	./"$(NAME)"

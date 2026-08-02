@@ -1,18 +1,10 @@
 #include "ScalarConverter.hpp"
-#include <sstream>
 
 int main(int argc, char **argv) {
-	(void)argc;
-	(void)argv;
-	// if (argc != 2)
-	// 	return (1);
-	ScalarConverter::convert("");
-	// int a;
-	// std::stringstream ss;
-	// ss << "1.000000f";
-	// ss >> a;
-	// std::cout << a << "\n";
-	// std::cout << ss.tellg()<< "\n";
-
+	if (argc != 2)
+		return 1;
+	if (argv[1][0] == '\0')
+		return 1;
+	ScalarConverter::convert(argv[1]);
 	return (0);
 }
