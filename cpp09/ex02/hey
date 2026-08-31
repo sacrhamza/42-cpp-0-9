@@ -1,0 +1,9 @@
+pairsize = 2
+idx = 2
+idx = 4
+idx = 6
+
+jacob = 3
+idx = (3 - 1) * 2 = 4;
+jacob = 2
+idx = (2 - 1) * 2 = 2;

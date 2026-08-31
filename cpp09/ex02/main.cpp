@@ -32,14 +32,15 @@ int main(int argc, char **argv){
 
 		std::vector<int> sorted = vec;
 		hey.mergeInsertion(vec, 1);
-		std::cout << "size = " << sorted.size() << "\n";
-		std::cout << "num = " << PmergeMe::num << "\n";
+		// std::cout << "size = " << sorted.size() << "\n";
+		// std::cout << "num = " << PmergeMe::num << "\n";
 		std::sort(sorted.begin(), sorted.end());
 
-		hey.print(vec, "result");
 		if (vec == sorted) {
-			std::cout << "vec is sorted\n";
+			// std::cout << "vec is sorted\n";
+		// hey.print(vec, "result");
 		}
+		return (vec != sorted);
 
 	}
 	catch (const std::exception& e) {
