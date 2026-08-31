@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
+set -e
 
-while true
+for (( i=0; $i<=100000; ++i ))
 do
-	./PmergeMe $(shuf --head-count=3 --input-range=1-10000)
+
+	for (( j=0; $j<=10; ++j ))
+	do
+		if ./PmergeMe $(shuf -r --head-count="$i" --input-range=1-1000000)
+		then
+			exit 20
+		fi
+	done
 done

@@ -28,23 +28,23 @@ int main(int argc, char **argv){
 		return (1);
 	try {
 		std::vector<int> vec = parseNums(argv + 1);
-	PmergeMe hey;
-	std::vector<int> odd = vec;
+		PmergeMe hey;
 
-	hey.mergeInsertion(vec, 1);
+		std::vector<int> sorted = vec;
+		hey.mergeInsertion(vec, 1);
+		std::cout << "size = " << sorted.size() << "\n";
+		std::cout << "num = " << PmergeMe::num << "\n";
+		std::sort(sorted.begin(), sorted.end());
 
-
-	std::cout << "size = " << odd.size() << "\n";
-	std::cout << "num = " << PmergeMe::num << "\n";
-	std::sort(odd.begin(), odd.end());
-
-	hey.print(vec, "result");
-	return (hey.isSorted(vec));
+		hey.print(vec, "result");
+		if (vec == sorted) {
+			std::cout << "vec is sorted\n";
+		}
 
 	}
 	catch (const std::exception& e) {
 		std::cout << e.what() << "\n";
-		return (20);
+		return (1);
 	}
 	return (0);
 }
