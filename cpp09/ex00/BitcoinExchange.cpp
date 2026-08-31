@@ -64,12 +64,11 @@ void BitcoinExchange::exchange(const std::string& file_name) {
 		pos = 0;
 		try {
 			date = split(line, ' ', pos);
+			checkDate(date);
 			std::string value_break = split(line, ' ', pos);
 			if (value_break != "|")
 				throw (std::runtime_error("no break"));
 			std::string value(line, pos);
-
-			checkDate(date);
 			checkValue(num, value);
 			if (num < 0 || num > 1000)
 				throw (std::runtime_error("value must be an integer or float between 0 and 100"));
