@@ -4,6 +4,12 @@
 
 #include <stack>
 #include <list>
+#include <cctype>
+#include <cstdio>
+#include <iostream>
+#include <stdexcept>
+#include <stdlib.h>
+#include <sstream>
 
 class RPN {
 	private:
@@ -15,14 +21,13 @@ class RPN {
 		char getChar(const std::string& str, std::size_t& pos);
 		int getInt(std::string& str, std::size_t& pos);
 
-int doSimpleMath(int a, int b, char op);
-		// int substract(int a, int b);
-  public:
-    RPN(void);
-    RPN(const RPN& other);
-    RPN& operator=(const RPN& other);
+		int doSimpleMath(int a, int b, char op);
+	public:
+		RPN(void);
+		RPN(const RPN& other);
+		RPN& operator=(const RPN& other);
 		int calculate(const std::string& str);
-    ~RPN(void);
+		~RPN(void);
 };
 
 #endif

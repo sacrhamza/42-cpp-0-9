@@ -34,7 +34,6 @@ std::vector<int> parseNums(char **argv) {
 	return (res);	
 }
 
-
 int main(int argc, char **argv){
 	if (argc < 2) {
 		std::cerr << "./PmergeMe list_of_numbers\n";
@@ -53,16 +52,16 @@ int main(int argc, char **argv){
 
 		printNums(Vec.begin(), Vec.end(), "before");
 
-struct timespec begin_time, end_time;
+	struct timespec begin_time, end_time;
 
-clock_gettime(CLOCK_MONOTONIC, &begin_time);
+	clock_gettime(CLOCK_MONOTONIC, &begin_time);
 		vecSort.mergeInsertion(Vec, 1);
-clock_gettime(CLOCK_MONOTONIC, &end_time);
+	clock_gettime(CLOCK_MONOTONIC, &end_time);
 		printNums(Vec.begin(), Vec.end(), "after");
 	
 		std::cout << "Time to process a range of " << Vec.size()
 			<< " elements with std::vector: "
-			<< (end_time.tv_nsec - begin_time.tv_nsec) << "us" << "\n";
+			<< ((end_time.tv_sec - begin_time.tv_sec) * 1000000000 + end_time.tv_nsec - begin_time.tv_nsec) / 1000 << "us" << "\n";
 
 
 clock_gettime(CLOCK_MONOTONIC, &begin_time);
@@ -70,7 +69,7 @@ clock_gettime(CLOCK_MONOTONIC, &begin_time);
 clock_gettime(CLOCK_MONOTONIC, &end_time);
 		std::cout << "Time to process a range of " 
 			<< Deque.size() <<  " elements with std::deque: "
-			<< (end_time.tv_nsec - begin_time.tv_nsec) << "us" << "\n";
+			<< ((end_time.tv_sec - begin_time.tv_sec) * 1000000000 + end_time.tv_nsec - begin_time.tv_nsec) / 1000 << "us" << "\n";
 
 	if (! std::equal(sorted.begin(), sorted.end(), Vec.begin()) ||
 			! std::equal(sorted.begin(), sorted.end(), Deque.begin()))

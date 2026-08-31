@@ -8,48 +8,37 @@
 #include <sstream>
 #include <cstdlib>
 #include <climits>
-
-BitcoinExchange::BitcoinExchange(void) {}
+#include <string>
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {}
-
 
 std::string split(const std::string& str, char c, std::size_t& pos) {
 	std::size_t char_pos = str.find(c, pos);
 
-	// if (char_pos == std::string::npos) {
-	// 	throw (std::runtime_error("not valid format"));
-	// }
-
-	// std::cout << "pos = " <<pos << "\n";
-	// std::cout << "char pos = " <<char_pos << "\n";
-	std::string res(str, pos, char_pos - pos);// = str.substr(pos, char_pos - pos); // 20,,20 pos = 3 char_pos = 4
-
+	if (char_pos == std::string::npos) {
+		throw (std::runtime_error("not valid format"));
+	}
+	std::string res(str, pos, char_pos - pos);
 	pos = char_pos + 1;
 
 	return (res);
 }
 
-BitcoinExchange::BitcoinExchange(const std::string& data) {
-	std::stringstream ss(data);
+BitcoinExchange::BitcoinExchange() {
+	std::ifstream database("./data.csv");
 	std::string line;
-	std::string err;
 	float num;
 	std::string date;
 	std::size_t pos;
-	while (std::getline(ss, line).good()) {
+	std::getline(database, line);
+	line.clear();
+	while (std::getline(database, line).good()) {
 		pos = 0;
-		try {
-			date = split(line, ',', pos);
-			std::string value(line, pos);
-			checkDate(date);
-			checkValue(num, value, err);
-			// std::cout << "value = " << value << "\n";
-			m_map[date] = num;
-		}
-		catch (const std::exception& e) {
-			std::cout  << e.what() << ": " << line <<  "\n";
-		}
+		date = split(line, ',', pos);
+		std::string value(line, pos);
+		checkDate(date);
+		checkValue(num, value);
+		m_map[date] = num;
 		line = "";
 	}
 }
@@ -61,68 +50,60 @@ void BitcoinExchange::exchange(const std::string& file_name) {
 	}
 
 	std::string line;
-	std::string err;
 	float num;
 	std::string date;
 	std::size_t pos;
 	std::map<std::string, float>::const_iterator it;
+	std::getline(file, line);
+	line.clear();
 	while (std::getline(file, line).good()) {
 		pos = 0;
 		try {
 			date = split(line, ' ', pos);
-			// std::cout << "date = " << date << "\n";
 			std::string value_break = split(line, ' ', pos);
-			// std::cout << "line break = \"" << value_break << "\"\n";
+			if (value_break != "|")
+				throw (std::runtime_error("no break"));
 			std::string value(line, pos);
-			// std::cout << "value = \"" << value << "\"\n";
 
 			checkDate(date);
-			checkValue(num, value, err);
-			// std::cout << "value = " << value << "\n";
+			checkValue(num, value);
+			if (num < 0 || num > 1000)
+				throw (std::runtime_error("value must be an integer or float between 0 and 100"));
 			it = m_map.find(date);
 			if (it == m_map.end()) {
-				it = m_map.lower_bound(date);
-				// std::cout << "searching for lower bound\n";
+				it = m_map.upper_bound(date);
 				if (it == m_map.end()) {
 					std::cout << "errror there is no value lower than that value " << value << "\n";
-					it = m_map.upper_bound(date);
-					// exit (1);
+					// it = m_map.upper_bound(date);
 				}
 			}
-			std::cout << (it->second * num) << "\n";
-			// m_map[date] = num;
+			std::cout << it->first << " => " << num << " => " << (it->second * num) << "\n";
 		}
 		catch (const std::exception& e) {
-			std::cout  << e.what() << ": " << line <<  "\n";
+			std::cout  << "Error: " << e.what() << ": " << line <<  "\n";
 		}
 		line = "";
 	}
-
-
 }
 
 bool storeInt(int &num, const std::string& var, std::size_t max = std::string::npos) {
-	size_t fail = var.find_first_of(" ");
-	(void)fail;
 	char c;
-	if (var.length() > max)
+	if (var.length() != max)
 	{
 		return (false);
 	}
 	std::stringstream ss;
+	if (var.find_first_not_of("0123456789") != std::string::npos)
+		return (false);
 	ss << var;
 	if (!(ss >> num)) {
 		return (false);
-		// std::cout << var << "it is not a number\n";
 	}
 	if (ss >> c) {
 		return (false);
-		// std::cout << var << "it is not a number\n";
 	}
 	return (true);
 }
-
-
 
 void BitcoinExchange::checkDate(const std::string& date) {
 	std::size_t pos = 0;
@@ -134,17 +115,18 @@ void BitcoinExchange::checkDate(const std::string& date) {
 	int month;
 	int day;
 
+	// NOTE: check if
 	if (!storeInt(year, year_str, 4) ||
-		!storeInt(month, month_str, 2) ||
-		!storeInt(day, day_str, 2)) {
+			!storeInt(month, month_str, 2) || month > 12||
+			!storeInt(day, day_str, 2) || day > 31 ) {
 		throw (std::runtime_error("bad input"));
 	}
 }
 
-void BitcoinExchange::checkValue(float &num, const std::string& value, std::string&err) {
+void BitcoinExchange::checkValue(float &num, const std::string& value) {
 	if (value.empty()) {
-			throw (std::runtime_error("bad input"));
-		}
+		throw (std::runtime_error("bad input"));
+	}
 	char *ptr;
 	num = std::strtof(value.c_str(), &ptr);
 	if (errno == ERANGE || num > static_cast<float>(INT_MAX)) {

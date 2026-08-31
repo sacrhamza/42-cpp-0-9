@@ -1,20 +1,15 @@
 #include "RPN.hpp"
 #include <cctype>
-#include <cstdio>
-#include <iostream>
 #include <stdexcept>
-#include <stdlib.h>
 
-RPN::RPN(void) {
-	std::cout << "RPN default constructor called\n";
-}
+RPN::RPN(void) {}
 
-RPN::RPN(const RPN& other) {
-	std::cout << "RPN copy constructor called\n";
-}
+RPN::RPN(const RPN& other) :
+	m_stack(other.m_stack){
+	}
 
 RPN& RPN::operator=(const RPN& other) {
-	std::cout << "RPN copy assigment operator called\n";
+	m_stack = other.m_stack;
 	return (*this);
 }
 
@@ -52,6 +47,8 @@ int RPN::doSimpleMath(int a, int b, char op) {
 		case '*':
 			return (a * b);
 		case '/':
+			if (b == 0)
+				throw (std::runtime_error("division by 0"));
 			return (a / b);
 	}
 	return (0);
@@ -60,12 +57,11 @@ int RPN::doSimpleMath(int a, int b, char op) {
 
 char RPN::getChar(const std::string& str, std::size_t& pos) {
 	while (pos < str.length() && str.at(pos) == ' ') {
-		std::cout << "space\n";
 		pos++;
 	}
-	//check here
 	return (str[pos]);
 }
+
 bool isOperator(char c) {
 	return (c == '-' || c == '+'
 			|| c == '/' || c == '*');
@@ -73,10 +69,15 @@ bool isOperator(char c) {
 
 int RPN::calculate(const std::string& str) {
 	std::size_t i = 0;
+
 	while (i < str.length()) {
 		char c = getChar(str, i);
-		++i;
+
 		if (std::isdigit(c)) {
+			if (i < str.length() && std::isdigit(str[i+1])) {
+				std::string err = "num: " + str.substr(i, 2) + " > 9";
+				throw (std::runtime_error(err));
+			}
 			m_stack.push(charToInt(c));
 		}
 		else if (isOperator(c)){
@@ -84,22 +85,20 @@ int RPN::calculate(const std::string& str) {
 				throw (std::runtime_error("too few numbers in stack"));
 			int b = m_stack.top(); m_stack.pop();
 			int a = m_stack.top(); m_stack.pop();
-			std::cout << "a = " << a << "\n";
-			std::cout << "b = " << b << "\n";
+
 			m_stack.push(doSimpleMath(a, b, c));
 		}
 		else {
-			throw (std::runtime_error("error"));
+			throw (std::runtime_error("error unknown: " + str.substr(i, 1)));
 		}
-		// std::cout << "hey " << i << "\n";
-		// doSimpleMath(str, i);
+		++i;
 		while (i < str.length() && std::isspace(str[i])) {
 			++i;
 		}
 	}
+	if (m_stack.size() != 1)
+		throw (std::runtime_error("stack size != 1"));
 	return (m_stack.top());
 }
 
-RPN::~RPN(void) {
-	std::cout << "RPN destroctor called\n";
-}
+RPN::~RPN(void) {}

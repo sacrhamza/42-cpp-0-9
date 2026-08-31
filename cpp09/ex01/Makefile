@@ -1,10 +1,10 @@
 CPP = c++
 
-CPP_FLAGS = #-g -fsanitize=address -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = PmergeMe
+NAME = RPN
 
-FILES = main.cpp ./PmergeMe.cpp
+FILES = main.cpp ./RPN.cpp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
@@ -23,3 +23,11 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(NAME)
 
 re: fclean $(NAME)
+
+realpath := $(shell realpath .)
+
+test: re
+	echo 'testing'
+	"$(realpath)/$(NAME)"
+
+run: test
