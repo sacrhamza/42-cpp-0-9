@@ -31,6 +31,8 @@ BitcoinExchange::BitcoinExchange() {
 	std::string date;
 	std::size_t pos;
 	std::getline(database, line);
+	if (line != "date,exchange_rate")
+		throw ("first like != date,exchange_rate");
 	line.clear();
 	while (std::getline(database, line).good()) {
 		pos = 0;
@@ -55,6 +57,8 @@ void BitcoinExchange::exchange(const std::string& file_name) {
 	std::size_t pos;
 	std::map<std::string, float>::const_iterator it;
 	std::getline(file, line);
+	if (line != "data | value")
+		throw ("first like != data | value");
 	line.clear();
 	while (std::getline(file, line).good()) {
 		pos = 0;
@@ -73,8 +77,7 @@ void BitcoinExchange::exchange(const std::string& file_name) {
 			if (it == m_map.end()) {
 				it = m_map.upper_bound(date);
 				if (it == m_map.end()) {
-					std::cout << "errror there is no value lower than that value " << value << "\n";
-					// it = m_map.upper_bound(date);
+					throw (std::runtime_error("there is no value lower"));
 				}
 			}
 			std::cout << it->first << " => " << num << " => " << (it->second * num) << "\n";
@@ -115,7 +118,6 @@ void BitcoinExchange::checkDate(const std::string& date) {
 	int month;
 	int day;
 
-	// NOTE: check if
 	if (!storeInt(year, year_str, 4) ||
 			!storeInt(month, month_str, 2) || month > 12||
 			!storeInt(day, day_str, 2) || day > 31 ) {
