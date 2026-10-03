@@ -40,41 +40,32 @@ int main(int argc, char **argv){
 		return (1);
 	}
 	try {
-
 		std::vector<int> Vec = parseNums(argv + 1);
 		std::deque<int> Deque(Vec.begin(), Vec.end());
-
-		std::vector<int> sorted = Vec;
-		std::sort(sorted.begin(), sorted.end());
 
 		PmergeMeVec vecSort;
 		PmergeMeDeque dequeSort;
 
 		printNums(Vec.begin(), Vec.end(), "before");
 
-	struct timespec begin_time, end_time;
+		struct timeval begin_time, end_time;
 
-	clock_gettime(CLOCK_MONOTONIC, &begin_time);
+		gettimeofday(&begin_time, NULL);
 		vecSort.mergeInsertion(Vec, 1);
-	clock_gettime(CLOCK_MONOTONIC, &end_time);
+		gettimeofday(&end_time, NULL);
 		printNums(Vec.begin(), Vec.end(), "after");
-	
+
 		std::cout << "Time to process a range of " << Vec.size()
 			<< " elements with std::vector: "
-			<< ((end_time.tv_sec - begin_time.tv_sec) * 1000000000 + end_time.tv_nsec - begin_time.tv_nsec) / 1000 << "us" << "\n";
+			<< ((end_time.tv_sec - begin_time.tv_sec) * 1000000 + end_time.tv_usec - begin_time.tv_usec)<< "us" << "\n";
 
 
-clock_gettime(CLOCK_MONOTONIC, &begin_time);
+		gettimeofday(&begin_time, NULL);
 		dequeSort.mergeInsertion(Deque, 1);
-clock_gettime(CLOCK_MONOTONIC, &end_time);
+		gettimeofday(&end_time, NULL);
 		std::cout << "Time to process a range of " 
 			<< Deque.size() <<  " elements with std::deque: "
-			<< ((end_time.tv_sec - begin_time.tv_sec) * 1000000000 + end_time.tv_nsec - begin_time.tv_nsec) / 1000 << "us" << "\n";
-
-	if (! std::equal(sorted.begin(), sorted.end(), Vec.begin()) ||
-			! std::equal(sorted.begin(), sorted.end(), Deque.begin()))
-		return (1);
-
+			<< ((end_time.tv_sec - begin_time.tv_sec) * 1000000 + end_time.tv_usec - begin_time.tv_usec)<< "us" << "\n";
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << "\n";

@@ -1,4 +1,5 @@
 #include "CharHandler.hpp"
+#include "utils.hpp"
 #include <cctype>
 #include <limits>
 #include <iomanip>
@@ -21,7 +22,7 @@ void CharHandler::handle(const std::string& str) {
 		if (!std::isdigit(c))
 		{
 			std::cout << std::fixed << std::setprecision(1);
-			std::cout << "char: '" << c << "'\n";
+			printChar(c);
 			std::cout << "int: " << static_cast<int>(c) << "\n";
 			std::cout << "float: " << static_cast<float>(c) << "f\n";
 			std::cout << "double: " << static_cast<double>(c) << "\n";

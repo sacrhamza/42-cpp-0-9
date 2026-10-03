@@ -1,6 +1,6 @@
 CPP = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = easyfind
 
@@ -23,11 +23,3 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(NAME)
 
 re: fclean $(NAME)
-
-realpath := $(shell realpath .)
-
-test: re
-	echo 'testing'
-	"$(realpath)/$(NAME)"
-
-run: test

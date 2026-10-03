@@ -9,6 +9,7 @@ class StringReplace
     size_t _len;
     std::string _from;
     std::string _to;
+
   public:
     StringReplace(std::string from, std::string to);
     std::string& replace(std::string &str);

@@ -13,7 +13,7 @@ void HumanB::attack(void)
   if (m_weapon != NULL)
     std::cout << m_weapon->getType() << "\n";
   else
-    std::cout << "(no type)";
+    std::cout << "(no weapon type)";
 
 }
 

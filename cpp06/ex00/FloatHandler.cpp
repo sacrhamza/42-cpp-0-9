@@ -1,5 +1,5 @@
 #include "FloatHandler.hpp"
-#include <limits>
+
 
 FloatHandler::FloatHandler(void) : Handler() {}
 
@@ -9,7 +9,6 @@ FloatHandler& FloatHandler::operator=(const FloatHandler& other) {
 	Handler::operator=(other);
 	return (*this);
 }
-
 
 void FloatHandler::handle(const std::string& str) {
 	if (str == "-inff" || str == "+inff")	 {
@@ -25,8 +24,10 @@ void FloatHandler::handle(const std::string& str) {
 		std::cout << "double: nan" << "\n";
 	}
 	else {
-		if (str.find_first_not_of("0123456789-+.") != std::string::npos) 
+		if (str.find_first_not_of("0123456789-+.f") != std::string::npos) 
 			goto nextHandler;
+		if (str.find('.') == std::string::npos)
+			goto  nextHandler;
 
 		char *ptr;
 		float num;
@@ -36,6 +37,7 @@ void FloatHandler::handle(const std::string& str) {
 		if (ptr != &str[str.length() - 1] || errno == ERANGE)
 			goto nextHandler;
 
+		std::cout << std::fixed << std::setprecision(7);
 		printChar(num);
 		printInt(num);
 		std::cout << "float: " << num << "f\n";

@@ -1,44 +1,54 @@
-#include <exception>
-#include<iostream>
+#include <iostream>
 #include "Array.hpp"
+#include <cstdlib>
 
-int main(void){
-	// test constructor
-	Array<int> ar(20);
+#define MAX_VAL 750
+int main(int, char**)
+{
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-	// test subscript operator
-	ar[0] = 20;
-	std::cout << ar[0] << "\n";
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-	Array<std::string> ar2(2);
-	ar2[0] = "hello";
-	ar2[1] = "hello";
-
-	// default constructor
-	Array<std::string> ar3;
-	ar3 = ar2;
-
-	// size member function
-	std::cout << "the size of array ar3 is " << ar3.size() << "\n";
-
-	Array<std::string> ar4(ar3);
-	ar3[0] = "hi";
-	ar3[1] = "hi";
-
-	ar3.print("ar3");
-	ar4.print("ar4");
-
-	// test const size function
-	const Array<std::string> const_arr(ar3);
-	std::cout << const_arr.size() << "\n";
-
-	try {
-		// 200: out of range
-		ar[200] = 200;
-	}
-	catch(const std::exception& e) {
-		std::cout << "out of range";
-	}
-
-	return (0);
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
 }

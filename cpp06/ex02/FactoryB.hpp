@@ -6,14 +6,14 @@
 #include "B.hpp"
 
 class FactoryB : public Factory{
-  public:
-    FactoryB(void);
-    FactoryB(const FactoryB& other);
-    FactoryB& operator=(const FactoryB& other);
+	public:
+		FactoryB(void);
+		FactoryB(const FactoryB& other);
+		FactoryB& operator=(const FactoryB& other);
 
 		virtual Base* createNew() const ;
 
-    ~FactoryB(void);
+		~FactoryB(void);
 };
 
 #endif

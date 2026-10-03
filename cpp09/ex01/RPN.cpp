@@ -5,8 +5,7 @@
 RPN::RPN(void) {}
 
 RPN::RPN(const RPN& other) :
-	m_stack(other.m_stack){
-	}
+	m_stack(other.m_stack){}
 
 RPN& RPN::operator=(const RPN& other) {
 	m_stack = other.m_stack;
@@ -92,7 +91,7 @@ int RPN::calculate(const std::string& str) {
 			throw (std::runtime_error("error unknown: " + str.substr(i, 1)));
 		}
 		++i;
-		while (i < str.length() && std::isspace(str[i])) {
+		while (i < str.length() && str[i] == ' ') {
 			++i;
 		}
 	}

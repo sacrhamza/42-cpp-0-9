@@ -9,8 +9,6 @@ DoubleHandler& DoubleHandler::operator=(const DoubleHandler& other) {
 	return (*this);
 }
 
-// TODO:dont forget precision
-
 void DoubleHandler::handle(const std::string& str) {
 	if (str == "-inf" || str == "+inf")	 {
 		std::cout << "char: " << "impossible\n";
@@ -33,10 +31,12 @@ void DoubleHandler::handle(const std::string& str) {
 		num = std::strtod(str.c_str(), &ptr);
 		if (*ptr != '\0' || errno == ERANGE)
 			goto nextHandler;
+
+		std::cout << std::fixed << std::setprecision(7);
 		printChar(num);
 		printInt(num);
 		printFloat(num);
-		std::cout << "ldouble: " << num << "\n";
+		std::cout << "double: " << num << "\n";
 	}
 	return ;
 nextHandler:

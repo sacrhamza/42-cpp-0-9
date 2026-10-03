@@ -8,7 +8,7 @@ class Factory {
     Factory(void);
     Factory(const Factory& other);
     Factory& operator=(const Factory& other);
-    ~Factory(void);
+    virtual ~Factory(void);
 	public:
 		virtual Base* createNew() const = 0;
 };

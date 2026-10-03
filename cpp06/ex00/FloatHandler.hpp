@@ -6,6 +6,7 @@
 #include "Handler.hpp"
 
 #include "utils.hpp"
+#include "iomanip"
 #include <cerrno>
 #include <cstdlib>
 
@@ -17,7 +18,6 @@ class FloatHandler : public Handler {
     FloatHandler(const FloatHandler& other);
     FloatHandler& operator=(const FloatHandler& other);
 		void handle(const std::string& str);
-		static void print(double num);
     ~FloatHandler(void);
 };
 

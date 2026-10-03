@@ -10,7 +10,6 @@ class IntHandler : public Handler {
     IntHandler(const IntHandler& other);
     IntHandler& operator=(const IntHandler& other);
 		void handle(const std::string& str);
-		static	void print(double num);
     ~IntHandler(void);
 };
 

@@ -4,6 +4,7 @@
 
 int main(int argc, char **argv){
 	if (argc != 2) {
+		std::cout << "errr: no file\n";
 		return (1);
 	}
 	try {
@@ -11,7 +12,7 @@ int main(int argc, char **argv){
 		hey.exchange(argv[1]);
 	}
 	catch (const std::exception& e) {
-		std::cout << "database error: " << e.what() << "\n";
+		std::cout << "error: " << e.what() << "\n";
 		return (1);
 	}
 	return (0);

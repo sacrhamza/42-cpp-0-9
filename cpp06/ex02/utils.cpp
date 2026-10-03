@@ -1,11 +1,11 @@
 #include "utils.hpp"
-#include <cstdlib>
-#include <exception>
 
-Base* genereate(void) {
+
+Base* generate(void) {
 	FactoryA facA;
 	FactoryB facB;
 	FactoryC facC;
+
 
 	Factory* FactoryList[3] = {&facA, &facB, &facC};
 

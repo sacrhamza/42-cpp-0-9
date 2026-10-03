@@ -1,7 +1,5 @@
 #include "Harl.hpp"
 #include <iostream>
-#include <new>
-#include <ostream>
 
 void Harl::debug(void)
 {
@@ -31,18 +29,11 @@ to the manager now.\n";
 
 void Harl::complain(std::string level)
 {
-  typedef void (Harl::*handler_func_t)(void);
-
-  struct s_handler{
-    handler_func_t handler;
-    std::string str;
-  };
-
   struct s_handler all[4] = {
-    {&Harl::debug, "debug"},
-    {&Harl::info, "info"},
-    {&Harl::warning, "warning"},
-    {&Harl::error, "error"}
+    {&Harl::debug, "DEBUG"},
+    {&Harl::info, "INFO"},
+    {&Harl::warning, "WARNING"},
+    {&Harl::error, "ERROR"}
   };
 
   for (int index = 0; index < 4; index++)

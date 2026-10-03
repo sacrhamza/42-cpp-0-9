@@ -9,7 +9,6 @@ class CharHandler : public Handler {
     CharHandler(const CharHandler& other);
     CharHandler& operator=(const CharHandler& other);
 		void handle(const std::string& str);
-		void print(double num);
     ~CharHandler(void);
 		void handler();
 };

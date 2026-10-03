@@ -10,7 +10,7 @@ template<typename T> class Array {
 		T* m_elems;
 		unsigned int m_size;
 
-		void hard_copy(const Array& other) {
+		void copy_elems(const Array& other) {
 			m_size = other.m_size;	
 			m_elems = new T[m_size];
 			for (unsigned int i = 0; i < m_size; i++) {
@@ -30,12 +30,12 @@ template<typename T> class Array {
 		}
 
 		Array(const Array& other) {
-			hard_copy(other);
+			copy_elems(other);
 		}
 
 		Array& operator=(const Array& other) {
 			delete[] m_elems; 
-			hard_copy(other);
+			copy_elems(other);
 			return (*this);
 		}
 
@@ -60,8 +60,6 @@ template<typename T> class Array {
 		~Array() {
 			delete[] m_elems;
 		}
-
-
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include "utils.hpp"
+#include <iomanip>
+#include <ios>
 
 void printInt(double num) {
 	if (num > std::numeric_limits<int>::max() ||
@@ -27,7 +29,7 @@ void printChar(double num) {
 
 void printFloat(double num) {
 	if (num > std::numeric_limits<float>::max() ||
-			num < std::numeric_limits<float>::min()) {
+			num < -std::numeric_limits<float>::max()) {
 		std::cout << "float: impossible\n";
 	}
 	else {

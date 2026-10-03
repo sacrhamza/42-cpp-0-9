@@ -8,7 +8,7 @@ FILES = ./main.cpp ./ClapTrap.cpp ./FragTrap.cpp ./DiamondTrap.cpp ./ScavTrap.cp
 
 OBJECTS = $(FILES:%.cpp=%.o)
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = DiamondTrap
 

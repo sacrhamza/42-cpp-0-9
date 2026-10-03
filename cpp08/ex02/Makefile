@@ -23,11 +23,3 @@ fclean: clean
 	$(RM) $(RM_OPTION) $(NAME)
 
 re: fclean $(NAME)
-
-realpath := $(shell realpath .)
-
-test: re
-	echo 'testing'
-	"$(realpath)/$(NAME)"
-
-run: test

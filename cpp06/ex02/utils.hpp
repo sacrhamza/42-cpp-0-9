@@ -5,11 +5,15 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+
 #include "FactoryA.hpp"
 #include "FactoryB.hpp"
 #include "FactoryC.hpp"
 
-Base* genereate(void);
+#include <cstdlib>
+#include <exception>
+
+Base* generate(void);
 void identify(Base* p);
 void identify(Base& p);
 

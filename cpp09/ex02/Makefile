@@ -1,6 +1,6 @@
 CPP = c++
 
-CPP_FLAGS = #-g -fsanitize=address -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = PmergeMe
 

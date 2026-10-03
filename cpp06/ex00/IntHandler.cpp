@@ -19,7 +19,7 @@ void IntHandler::handle(const std::string& str) {
 		char c = 0;
 		ss << str;
 		if (ss >> num && !(ss >> c)) {
-			std::cout << std::fixed<< std::setprecision(1);
+			std::cout << std::fixed << std::setprecision(1);
 			printChar(num);
 			std::cout << "int: " << (num) << "\n";
 			std::cout << "float: " << static_cast<float>(num) << "f\n";

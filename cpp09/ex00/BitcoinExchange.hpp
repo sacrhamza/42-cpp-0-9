@@ -7,9 +7,9 @@
 class BitcoinExchange {
 	private:
 		std::map<std::string, float, std::greater<std::string> > m_map;
-  public:
 		static void checkValue(float &num, const std::string& value);
 		static void checkDate(const std::string& date);
+  public:
     BitcoinExchange(void);
     BitcoinExchange(const BitcoinExchange& other);
     BitcoinExchange& operator=(const BitcoinExchange& other);

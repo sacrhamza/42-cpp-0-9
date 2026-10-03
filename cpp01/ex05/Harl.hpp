@@ -11,8 +11,17 @@ class Harl
     void warning(void);
     void error(void);
 
+    typedef void (Harl::*handler_func_t)(void);
+
+    struct s_handler{
+      handler_func_t handler;
+      std::string str;
+    };
+
   public:
     void complain(std::string level);
 };
+
+
 
 #endif

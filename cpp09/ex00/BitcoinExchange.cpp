@@ -4,13 +4,14 @@
 #include <exception>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <stdexcept>
 #include <sstream>
 #include <cstdlib>
 #include <climits>
 #include <string>
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other): m_map(other.m_map) {}
 
 std::string split(const std::string& str, char c, std::size_t& pos) {
 	std::size_t char_pos = str.find(c, pos);
@@ -26,15 +27,19 @@ std::string split(const std::string& str, char c, std::size_t& pos) {
 
 BitcoinExchange::BitcoinExchange() {
 	std::ifstream database("./data.csv");
+if (!database.is_open()) {
+		throw (std::runtime_error("cant open database data.csv"));
+	}
+
 	std::string line;
 	float num;
 	std::string date;
 	std::size_t pos;
 	std::getline(database, line);
 	if (line != "date,exchange_rate")
-		throw ("first like != date,exchange_rate");
+		throw (std::runtime_error("first line != date,exchange_rate"));
 	line.clear();
-	while (std::getline(database, line).good()) {
+	while (std::getline(database, line).good() || line != "") {
 		pos = 0;
 		date = split(line, ',', pos);
 		std::string value(line, pos);
@@ -57,10 +62,10 @@ void BitcoinExchange::exchange(const std::string& file_name) {
 	std::size_t pos;
 	std::map<std::string, float>::const_iterator it;
 	std::getline(file, line);
-	if (line != "data | value")
-		throw ("first like != data | value");
+	if (line != "date | value")
+		throw (std::runtime_error("first like != data | value"));
 	line.clear();
-	while (std::getline(file, line).good()) {
+	while (std::getline(file, line).good()  || line != "") {
 		pos = 0;
 		try {
 			date = split(line, ' ', pos);
@@ -71,7 +76,7 @@ void BitcoinExchange::exchange(const std::string& file_name) {
 			std::string value(line, pos);
 			checkValue(num, value);
 			if (num < 0 || num > 1000)
-				throw (std::runtime_error("value must be an integer or float between 0 and 100"));
+				throw (std::runtime_error("value must be an integer or float between 0 and 1000"));
 			it = m_map.find(date);
 			if (it == m_map.end()) {
 				it = m_map.upper_bound(date);
@@ -143,10 +148,9 @@ void BitcoinExchange::checkValue(float &num, const std::string& value) {
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
-	std::cout << "BitcoinExchange copy assigment operator called\n";
+	m_map = other.m_map;
 	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(void) {
-	std::cout << "BitcoinExchange destroctor called\n";
 }

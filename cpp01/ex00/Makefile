@@ -30,8 +30,3 @@ re: fclean $(NAME)
 
 run: $(NAME)
 	./$(NAME)
-
-
-test: re
-	echo 'testing'
-	./"$(NAME)"
